@@ -1,6 +1,6 @@
 package com.epam.biaseda.reportportaltest.ui.page.element;
 
-import com.epam.biaseda.reportportaltest.core.driver.WaitAction;
+import com.epam.biaseda.reportportaltest.ui.driver.action.WaitAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 

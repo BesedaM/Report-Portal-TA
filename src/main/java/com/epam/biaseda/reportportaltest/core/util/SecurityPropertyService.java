@@ -9,11 +9,11 @@ public class SecurityPropertyService {
     private static final Properties properties = new Properties();
     private static final String SECURITY_PROPERTIES_FILE = "config.properties";
 
-    private static final String LOGIN = "reportportal.username";
-    private static final String PASSWORD = "reportportal.password";
+    private static final String LOGIN_REMOTE = "remote.reportportal.username";
+    private static final String PASSWORD_REMOTE = "remote.reportportal.password";
 
-    private static final String LOGIN_LOCAL = "reportportal.local.username";
-    private static final String PASSWORD_LOCAL = "reportportal.local.password";
+    private static final String LOGIN_LOCAL = "local.reportportal.username";
+    private static final String PASSWORD_LOCAL = "local.reportportal.password";
 
 
     static {
@@ -28,19 +28,26 @@ public class SecurityPropertyService {
         }
     }
 
-    public static String getRemoteLogin() {
-        return properties.getProperty(LOGIN);
+    public static String getLogin(ServerType serverType) {
+        switch (serverType) {
+            case LOCAL:
+                return properties.getProperty(LOGIN_LOCAL);
+            case REMOTE:
+                return properties.getProperty(LOGIN_REMOTE);
+            default:
+                throw new IllegalStateException(String.format("Unknown login for %s type server!", serverType));
+        }
     }
 
-    public static String getRemotePassword() {
-        return properties.getProperty(PASSWORD);
+    public static String getPassword(ServerType serverType) {
+        switch (serverType) {
+            case LOCAL:
+                return properties.getProperty(PASSWORD_LOCAL);
+            case REMOTE:
+                return properties.getProperty(PASSWORD_REMOTE);
+            default:
+                throw new IllegalStateException(String.format("Unknown password for %s type server!", serverType));
+        }
     }
 
-    public static String getLocalLogin() {
-        return properties.getProperty(LOGIN_LOCAL);
-    }
-
-    public static String getLocalPassword() {
-        return properties.getProperty(PASSWORD_LOCAL);
-    }
 }

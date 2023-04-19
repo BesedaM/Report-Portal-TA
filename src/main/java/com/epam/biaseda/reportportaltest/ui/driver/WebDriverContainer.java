@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.core.driver;
+package com.epam.biaseda.reportportaltest.ui.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

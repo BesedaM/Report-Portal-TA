@@ -1,9 +1,9 @@
-package com.epam.biaseda.reportportaltest.core.driver;
+package com.epam.biaseda.reportportaltest.ui.driver;
 
-import com.epam.biaseda.reportportaltest.core.driver.drivertype.BrowserType;
-import com.epam.biaseda.reportportaltest.core.driver.drivertype.DriverType;
-import com.epam.biaseda.reportportaltest.core.driver.drivertype.DriverTypeChrome;
-import com.epam.biaseda.reportportaltest.core.driver.drivertype.DriverTypeFirefox;
+import com.epam.biaseda.reportportaltest.ui.driver.drivertype.BrowserType;
+import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverType;
+import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeChrome;
+import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeFirefox;
 import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +45,7 @@ public class WebDriverFactory {
                 return new DriverTypeChrome(false);
 
             default:
-                throw new NoSuchElementException(String.format("Unsupported Browser Type specified at '%s' property: '%s'. Expected values are: '%s'",
+                throw new IllegalStateException(String.format("Unsupported Browser Type specified at '%s' property: '%s'. Expected values are: '%s'",
                         BROWSER_TYPE, activeProfileBrowserTypeProperty, Arrays.toString(BrowserType.values())));
         }
     }

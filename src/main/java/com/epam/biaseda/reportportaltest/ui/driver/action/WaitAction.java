@@ -1,5 +1,6 @@
-package com.epam.biaseda.reportportaltest.core.driver;
+package com.epam.biaseda.reportportaltest.ui.driver.action;
 
+import com.epam.biaseda.reportportaltest.ui.driver.WebDriverHolder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.epam.biaseda.reportportaltest.core.driver.WebDriverContainer.TIMEOUT;
+import static com.epam.biaseda.reportportaltest.ui.driver.WebDriverContainer.TIMEOUT;
 
 public class WaitAction {
 

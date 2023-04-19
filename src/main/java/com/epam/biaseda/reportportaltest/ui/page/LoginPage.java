@@ -1,8 +1,8 @@
 package com.epam.biaseda.reportportaltest.ui.page;
 
+import com.epam.biaseda.reportportaltest.ui.driver.action.WaitAction;
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import lombok.Getter;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
@@ -21,5 +21,10 @@ public class LoginPage extends BasePage {
     private CustomElement password;
 
     @FindBy(xpath = "//button[@type='submit']")
-    private CustomElement submit;
+    private CustomElement submitButton;
+
+    @Override
+    public void waitForPageLoaded() {
+        WaitAction.waitUntilClickable(login);
+    }
 }

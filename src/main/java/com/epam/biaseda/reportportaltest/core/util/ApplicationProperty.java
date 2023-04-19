@@ -13,7 +13,10 @@ public enum ApplicationProperty {
     WEBDRIVER_MODE("webdriver.mode"),
     WEBDRIVER_TIMEOUT_WAIT("webdriver.timeout.wait"),
     PLATFORM("webdriver.platform"),
-    BROWSER_DOWNLOAD_DIR ("webdriver.browser.download.dir");
+    BROWSER_DOWNLOAD_DIR ("webdriver.browser.download.dir"),
+    SERVER_TYPE("server.type"),
+    SERVER_LOCAL_URL("server.local.url"),
+    SERVER_REMOTE_URL("server.remote.url");
 
     private String name;
 }

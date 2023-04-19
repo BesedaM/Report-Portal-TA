@@ -1,6 +1,6 @@
 package com.epam.biaseda.reportportaltest.ui.page;
 
-import com.epam.biaseda.reportportaltest.core.driver.WebDriverHolder;
+import com.epam.biaseda.reportportaltest.ui.driver.WebDriverHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
@@ -9,7 +9,7 @@ public class BasePage {
 
     private static Logger log = LogManager.getRootLogger();
 
-    protected BasePage() {
+    public BasePage() {
         HtmlElementLoader.populatePageObject(this, WebDriverHolder.getWebDriver());
     }
 

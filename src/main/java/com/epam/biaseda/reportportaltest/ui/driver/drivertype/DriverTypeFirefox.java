@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.core.driver.drivertype;
+package com.epam.biaseda.reportportaltest.ui.driver.drivertype;
 
 import com.epam.biaseda.reportportaltest.core.util.ApplicationProperty;
 import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
