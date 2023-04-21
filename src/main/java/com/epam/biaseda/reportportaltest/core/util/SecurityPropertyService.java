@@ -1,53 +1,52 @@
 package com.epam.biaseda.reportportaltest.core.util;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
+import java.io.InputStream;
+import java.util.*;
 
 public class SecurityPropertyService {
 
+    private enum SecurityPropertyType {
+        LOGIN, PASSWORD, TOKEN;
+    }
+
     private static final Properties properties = new Properties();
-    private static final String SECURITY_PROPERTIES_FILE = "config.properties";
+    private static final String SECURITY_PROPERTIES_FILE = "security.properties";
 
-    private static final String LOGIN_REMOTE = "remote.reportportal.username";
-    private static final String PASSWORD_REMOTE = "remote.reportportal.password";
+    private static final List<String> PROPERTIES_LIST =
+            Arrays.asList("remote.reportportal.login",
+                    "remote.reportportal.password",
+                    "remote.reportportal.accesstoken",
+                    "local.reportportal.login",
+                    "local.reportportal.password",
+                    "local.reportportal.accesstoken");
 
-    private static final String LOGIN_LOCAL = "local.reportportal.username";
-    private static final String PASSWORD_LOCAL = "local.reportportal.password";
-
+    public static final String LOGIN;
+    public static final String PASSWORD;
+    public static final String ACCESS_TOKEN;
 
     static {
         loadSecurityProperties();
+        LOGIN = getProperty(SecurityPropertyType.LOGIN);
+        PASSWORD = getProperty(SecurityPropertyType.PASSWORD);
+        ACCESS_TOKEN = getProperty(SecurityPropertyType.TOKEN);
     }
 
     private static void loadSecurityProperties() {
-        try {
-            properties.load(new FileInputStream(SECURITY_PROPERTIES_FILE));
+        try (InputStream resourceStream = ClassLoader.getSystemResourceAsStream(SECURITY_PROPERTIES_FILE)) {
+            properties.load(resourceStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static String getLogin(ServerType serverType) {
-        switch (serverType) {
-            case LOCAL:
-                return properties.getProperty(LOGIN_LOCAL);
-            case REMOTE:
-                return properties.getProperty(LOGIN_REMOTE);
-            default:
-                throw new IllegalStateException(String.format("Unknown login for %s type server!", serverType));
-        }
-    }
+    private static String getProperty(SecurityPropertyType propertyType) {
+        String serverType = ApplicationPropertyService.getProperty(ApplicationProperty.SERVER_TYPE);
 
-    public static String getPassword(ServerType serverType) {
-        switch (serverType) {
-            case LOCAL:
-                return properties.getProperty(PASSWORD_LOCAL);
-            case REMOTE:
-                return properties.getProperty(PASSWORD_REMOTE);
-            default:
-                throw new IllegalStateException(String.format("Unknown password for %s type server!", serverType));
-        }
-    }
+        String requiredPropertyName = PROPERTIES_LIST.stream().filter(property -> property.startsWith(serverType.toLowerCase()) &&
+                        property.endsWith(propertyType.name().toLowerCase()))
+                .findFirst().orElseThrow(() -> new NoSuchElementException("Security property with name '%s.reportportal.%s' was not found!"));
 
+        return properties.getProperty(requiredPropertyName);
+    }
 }

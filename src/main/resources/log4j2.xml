@@ -5,11 +5,9 @@
     </Properties>
 
     <Appenders>
-        <Appender type="Console" name="STDOUT">
-            <Layout type="PatternLayout">
-                <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{50} - %msg%n</Pattern>
-            </Layout>
-        </Appender>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{50} - %msg%n" />
+        </Console>
 
         <RollingFile name="File"
                      fileName="${filename}.log"
@@ -23,12 +21,11 @@
                 <SizeBasedTriggeringPolicy size="5 MB"/>
             </Policies>
         </RollingFile>
-
     </Appenders>
 
     <Loggers>
         <Root level="debug">
-            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>

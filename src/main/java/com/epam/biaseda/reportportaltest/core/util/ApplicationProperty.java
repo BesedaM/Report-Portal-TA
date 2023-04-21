@@ -15,8 +15,7 @@ public enum ApplicationProperty {
     PLATFORM("webdriver.platform"),
     BROWSER_DOWNLOAD_DIR ("webdriver.browser.download.dir"),
     SERVER_TYPE("server.type"),
-    SERVER_LOCAL_URL("server.local.url"),
-    SERVER_REMOTE_URL("server.remote.url");
+    PROJECT_NAME("project.name");
 
     private String name;
 }
