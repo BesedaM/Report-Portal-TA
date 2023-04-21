@@ -20,7 +20,7 @@ public class BaseTest {
 
     @BeforeClass
     public void logTestStart(){
-        log.debug(String.format("%s test started", getClass().getCanonicalName()));
+        log.debug(String.format("%s Test start", getClass().getCanonicalName()));
     }
 
     @BeforeClass(dependsOnMethods = "logTestStart")
@@ -46,6 +46,6 @@ public class BaseTest {
 
     @AfterClass(dependsOnMethods = "closeLogPrinter")
     public void logTestEnd(){
-        log.debug(String.format("%s test ended", getClass().getCanonicalName()));
+        log.debug(String.format("%s Test end", getClass().getCanonicalName()));
     }
 }

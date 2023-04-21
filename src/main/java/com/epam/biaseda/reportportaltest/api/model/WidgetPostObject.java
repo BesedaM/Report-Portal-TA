@@ -1,12 +1,16 @@
 package com.epam.biaseda.reportportaltest.api.model;
 
 import com.epam.biaseda.reportportaltest.api.model.part.ContentParameters;
-import lombok.Getter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Builder
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class WidgetPostObject implements Serializable {
 
     private ContentParameters contentParameters;

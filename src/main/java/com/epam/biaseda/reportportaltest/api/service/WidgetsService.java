@@ -9,13 +9,9 @@ public interface WidgetsService {
     String GET_WIDGETS_URI = "/api/v1/{projectName}/widget/{widgetId}";
 
     ValidatableResponse getWidget(String projectName,
-                                  int widgetId,
-                                  String login,
-                                  String password);
+                                  int widgetId);
 
     ValidatableResponse postWidget(String projectName,
-                                   WidgetPostObject widget,
-                                   String logic,
-                                   String password);
+                                   WidgetPostObject widget);
 
 }

@@ -15,9 +15,7 @@ public class WidgetsServiceImpl extends BaseService implements WidgetsService {
 
     @Override
     public ValidatableResponse getWidget(String projectName,
-                                         int widgetId,
-                                         String login,
-                                         String password) {
+                                         int widgetId) {
         RequestSpecBuilder baseRequestSpecBuilder = getBasicRequestSpecBuilder();
         baseRequestSpecBuilder.setBasePath(GET_WIDGETS_URI);
         baseRequestSpecBuilder.addPathParam(PROJECT_NAME_PATH_PARAMETER, projectName);
@@ -35,9 +33,7 @@ public class WidgetsServiceImpl extends BaseService implements WidgetsService {
 
     @Override
     public ValidatableResponse postWidget(String projectName,
-                                          WidgetPostObject widget,
-                                          String logic,
-                                          String password) {
+                                          WidgetPostObject widget) {
         RequestSpecBuilder baseRequestSpecBuilder = getBasicRequestSpecBuilder();
         baseRequestSpecBuilder.setBasePath(POST_WIDGET_URI);
         baseRequestSpecBuilder.addPathParam(PROJECT_NAME_PATH_PARAMETER, projectName);

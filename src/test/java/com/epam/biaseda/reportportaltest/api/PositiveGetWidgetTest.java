@@ -17,8 +17,8 @@ public class PositiveGetWidgetTest extends BaseTest {
 
     @Test
     public void getExistingWidgetTest() {
-        ValidatableResponse response = widgetsService.getWidget(projectName, widgetId, username, password);
-        response.statusCode(HttpStatus.SC_OK).log().everything();
+        ValidatableResponse response = widgetsService.getWidget(projectName, widgetId);
+        response.statusCode(HttpStatus.SC_OK);
 
         WidgetGetObject widget = response.extract().as(WidgetGetObject.class);
         SoftAssert softAssert = new SoftAssert();
@@ -27,6 +27,5 @@ public class PositiveGetWidgetTest extends BaseTest {
         softAssert.assertEquals(widget.getOwner(), "default");
         softAssert.assertAll();
     }
-
 
 }

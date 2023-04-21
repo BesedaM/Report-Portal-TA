@@ -14,8 +14,14 @@ public class DashboardsPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class, 'page-header')]/ul")
     private CustomElement header;
 
+    @FindBy(xpath="//div[contains(@class, 'page-content')]/h3[1]")
+    private CustomElement myDashboardsHeader;
+
     @FindBy(xpath = "//div[contains(@class, 'dashboardGridItem')]/a")
     private List<DashboardPreview> dashboardList;
+
+    @FindBy(xpath="//div[contains(@class, 'page-content')]/h3[1]")
+    private CustomElement sharedDashboardsHeader;
 
     @Override
     public void waitForPageLoaded() {
