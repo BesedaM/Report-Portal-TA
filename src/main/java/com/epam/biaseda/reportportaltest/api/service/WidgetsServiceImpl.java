@@ -1,41 +1,36 @@
 package com.epam.biaseda.reportportaltest.api.service;
 
 import com.epam.biaseda.reportportaltest.api.model.WidgetPostObject;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
-import io.restassured.authentication.OAuth2Scheme;
+import com.epam.biaseda.reportportaltest.core.util.SecurityPropertyService;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 
-public class WidgetsServiceImpl implements WidgetsService {
+public class WidgetsServiceImpl extends BaseService implements WidgetsService {
+
+    private static final String PROJECT_NAME_PATH_PARAMETER = "projectName";
+    private static final String WIDGET_ID_PATH_PARAM = "widgetId";
 
     @Override
     public ValidatableResponse getWidget(String projectName,
                                          int widgetId,
                                          String login,
                                          String password) {
-
-        OAuth2Scheme authenticationScheme = new OAuth2Scheme();
-        authenticationScheme.setAccessToken("3e4338fd-96b4-441e-ad63-682101246568");
-
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setContentType("application/json; charset=UTF-8");
-        builder.setAuth(authenticationScheme);
-        builder.setBaseUri(ApplicationPropertyService.defineApplicationUrl());
-        builder.setBasePath(GET_WIDGETS_URI);
-        builder.addPathParam("projectName", projectName);
-        builder.addPathParam("widgetId", widgetId);
-        RequestSpecification requestSpec = builder.build();
-        requestSpec.log().all();
+        RequestSpecBuilder baseRequestSpecBuilder = getBasicRequestSpecBuilder();
+        baseRequestSpecBuilder.setBasePath(GET_WIDGETS_URI);
+        baseRequestSpecBuilder.addPathParam(PROJECT_NAME_PATH_PARAMETER, projectName);
+        baseRequestSpecBuilder.addPathParam(WIDGET_ID_PATH_PARAM, widgetId);
+        RequestSpecification requestSpec = baseRequestSpecBuilder.build();
 
         return given()
                 .spec(requestSpec)
+                .auth().preemptive()
+                .oauth2(SecurityPropertyService.ACCESS_TOKEN)
                 .when()
                 .get()
-                .then()
-                .log().body();
+                .then();
     }
 
     @Override
@@ -43,21 +38,18 @@ public class WidgetsServiceImpl implements WidgetsService {
                                           WidgetPostObject widget,
                                           String logic,
                                           String password) {
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBody(widget);
-        builder.addParam("projectName", projectName);
-        builder.setContentType("application/json; charset=UTF-8");
-        RequestSpecification requestSpec = builder.build();
-
-        String uri = ApplicationPropertyService.defineApplicationUrl() + POST_WIDGET_URI;
+        RequestSpecBuilder baseRequestSpecBuilder = getBasicRequestSpecBuilder();
+        baseRequestSpecBuilder.setBasePath(POST_WIDGET_URI);
+        baseRequestSpecBuilder.addPathParam(PROJECT_NAME_PATH_PARAMETER, projectName);
+        baseRequestSpecBuilder.setBody(widget);
+        RequestSpecification requestSpec = baseRequestSpecBuilder.build();
 
         return given()
-                .auth()
-                .basic(logic, password)
                 .spec(requestSpec)
+                .auth().preemptive()
+                .oauth2(SecurityPropertyService.ACCESS_TOKEN)
                 .when()
-                .post(uri)
-                .then()
-                .log().all();
+                .post()
+                .then();
     }
 }

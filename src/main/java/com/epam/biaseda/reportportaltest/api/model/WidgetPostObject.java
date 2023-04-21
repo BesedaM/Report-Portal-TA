@@ -1,6 +1,5 @@
 package com.epam.biaseda.reportportaltest.api.model;
 
-import com.epam.biaseda.reportportaltest.api.model.part.Content;
 import com.epam.biaseda.reportportaltest.api.model.part.ContentParameters;
 import lombok.Getter;
 

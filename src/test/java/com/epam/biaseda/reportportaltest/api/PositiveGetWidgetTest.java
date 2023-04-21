@@ -27,4 +27,6 @@ public class PositiveGetWidgetTest extends BaseTest {
         softAssert.assertEquals(widget.getOwner(), "default");
         softAssert.assertAll();
     }
+
+
 }

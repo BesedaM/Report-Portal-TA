@@ -97,6 +97,28 @@
       <version>2.20.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-iostreams -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-iostreams</artifactId>
+      <version>2.20.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.github.scribejava/scribejava-core -->
+    <dependency>
+      <groupId>com.github.scribejava</groupId>
+      <artifactId>scribejava-core</artifactId>
+      <version>8.3.3</version>
+    </dependency>
+
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/com.github.scribejava/scribejava-apis &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>com.github.scribejava</groupId>-->
+<!--      <artifactId>scribejava-apis</artifactId>-->
+<!--      <version>2.7.3</version>-->
+<!--      <scope>runtime</scope>-->
+<!--    </dependency>-->
+
 
   </dependencies>
 

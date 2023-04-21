@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class WidgetOptions {
 
-    private Boolean isZoom;
+    private Boolean zoom;
 
     private String timeline;
 
