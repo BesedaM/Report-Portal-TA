@@ -1,7 +1,7 @@
 package com.epam.biaseda.reportportaltest.ui.validation;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.description.Description;
 
@@ -12,7 +12,7 @@ public class BaseUIValidation {
     protected static final String VALIDATE_TEXT_PATTERN = "%s text";
     protected static final String VALIDATE_PRESENCE_PATTERN = "%s present";
 
-    protected static final Logger log = LogManager.getRootLogger();
+    protected static CustomLogger log = CustomLoggerProvider.getLogger();
 
     protected static StringBuilder createDescriptionReportBuilder() {
         StringBuilder descriptionReportBuilder = new StringBuilder(String.format("Assertions:%n"));

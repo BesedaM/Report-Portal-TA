@@ -1,7 +1,7 @@
 package com.epam.biaseda.reportportaltest.ui.driver.drivertype;
 
-import com.epam.biaseda.reportportaltest.core.util.ApplicationProperty;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

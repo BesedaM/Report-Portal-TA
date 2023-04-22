@@ -1,7 +1,7 @@
 package com.epam.biaseda.reportportaltest.ui.driver;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class WebDriverContainer {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     public static long TIMEOUT = 5;
 

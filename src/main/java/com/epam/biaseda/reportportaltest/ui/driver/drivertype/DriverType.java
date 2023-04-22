@@ -1,22 +1,22 @@
 package com.epam.biaseda.reportportaltest.ui.driver.drivertype;
 
-import com.epam.biaseda.reportportaltest.core.util.ApplicationProperty;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.google.common.base.Strings;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Arrays;
 
-import static com.epam.biaseda.reportportaltest.core.util.ApplicationProperty.WEBDRIVER_MODE;
+import static com.epam.biaseda.reportportaltest.core.property.ApplicationProperty.WEBDRIVER_MODE;
 
 public abstract class DriverType {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     protected String platform;
     protected String browser;
@@ -52,7 +52,7 @@ public abstract class DriverType {
     private String fetchProperty(ApplicationProperty property) {
         String propertyValue = ApplicationPropertyService.getProperty(property);
         if (Strings.isNullOrEmpty(propertyValue)) {
-            log.warn("'{}' property was not specified in config.properties file!", property);
+            log.warn(String.format("'%s' property was not specified in config.properties file!", property));
         }
         return propertyValue;
     }
@@ -69,9 +69,9 @@ public abstract class DriverType {
     }
 
     protected void printDriverInfo() {
-        log.info("WebDriver Mode: {}", driverMode);
-        log.info("Platform: {}", platform);
-        log.info("Browser: {}", browser);
+        log.info(String.format("WebDriver Mode: %s", driverMode));
+        log.info(String.format("Platform: %s", platform));
+        log.info(String.format("Browser: %s", browser));
     }
 
     protected abstract MutableCapabilities getCapabilities();

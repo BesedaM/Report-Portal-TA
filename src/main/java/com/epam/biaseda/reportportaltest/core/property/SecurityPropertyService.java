@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.core.util;
+package com.epam.biaseda.reportportaltest.core.property;
 
 import java.io.IOException;
 import java.io.InputStream;

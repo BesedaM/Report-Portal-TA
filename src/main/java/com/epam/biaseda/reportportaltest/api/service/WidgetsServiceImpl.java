@@ -1,7 +1,7 @@
 package com.epam.biaseda.reportportaltest.api.service;
 
 import com.epam.biaseda.reportportaltest.api.model.WidgetPostObject;
-import com.epam.biaseda.reportportaltest.core.util.SecurityPropertyService;
+import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;

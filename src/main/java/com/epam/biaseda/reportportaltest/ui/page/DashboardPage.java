@@ -1,14 +1,9 @@
 package com.epam.biaseda.reportportaltest.ui.page;
 
-import com.epam.biaseda.reportportaltest.ui.driver.WebDriverHolder;
 import com.epam.biaseda.reportportaltest.ui.driver.action.WaitAction;
 import com.epam.biaseda.reportportaltest.ui.page.block.Widget;
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import lombok.Getter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
@@ -17,8 +12,6 @@ import java.util.NoSuchElementException;
 
 @Getter
 public class DashboardPage extends BasePage {
-
-    private static final Logger log = LogManager.getRootLogger();
 
     @Name("'All dashboards' link")
     @FindBy(xpath = "//a[contains(@class,'page-breadcrumbs')]")

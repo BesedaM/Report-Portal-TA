@@ -1,24 +1,23 @@
 package com.epam.biaseda.reportportaltest.ui.driver;
 
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.epam.biaseda.reportportaltest.ui.driver.drivertype.BrowserType;
 import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverType;
 import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeChrome;
 import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeFirefox;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Arrays;
 
-import static com.epam.biaseda.reportportaltest.core.util.ApplicationProperty.BROWSER_TYPE;
+import static com.epam.biaseda.reportportaltest.core.property.ApplicationProperty.BROWSER_TYPE;
 
 
 public class WebDriverFactory {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     private static final Dimension BROWSER_WINDOW_DIMENSION;
 
@@ -51,7 +50,7 @@ public class WebDriverFactory {
     }
 
     public WebDriver instantiateWebDriver() {
-        log.info("Current Browser Type Selected: {}", definedDriverType.getClass().getCanonicalName());
+        log.info(String.format("Current Browser Type Selected: %s", definedDriverType.getClass().getCanonicalName()));
         WebDriver webdriver = definedDriverType.getWebDriverObject();
         webdriver.manage().window().maximize();
         webdriver.manage().window().setSize(BROWSER_WINDOW_DIMENSION);

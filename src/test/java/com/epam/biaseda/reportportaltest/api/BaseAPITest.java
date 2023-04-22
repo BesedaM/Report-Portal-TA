@@ -1,9 +1,9 @@
 package com.epam.biaseda.reportportaltest.api;
 
-import com.epam.biaseda.reportportaltest.api.util.LogPrinter;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationProperty;
-import com.epam.biaseda.reportportaltest.core.util.ApplicationPropertyService;
-import com.epam.biaseda.reportportaltest.core.util.SecurityPropertyService;
+import com.epam.biaseda.reportportaltest.api.util.ApiLogPrinter;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
+import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LoggingException;
@@ -26,7 +26,7 @@ public class BaseAPITest {
     @BeforeClass(dependsOnMethods = "logTestStart")
     public void initLogPrinter() {
         try {
-            LogPrinter.initLogPrinter();
+            ApiLogPrinter.initLogPrinter();
         } catch (LoggingException ignored) {
             log.info("Log Printer was not created! Unable to write RestAssured logs with Log4j!");
         }
@@ -41,7 +41,7 @@ public class BaseAPITest {
 
     @AfterClass(alwaysRun = true)
     public void closeLogPrinter(){
-        LogPrinter.closeLogPrinter();
+        ApiLogPrinter.closeLogPrinter();
     }
 
     @AfterClass(dependsOnMethods = "closeLogPrinter")

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.io.IoBuilder;
 
 import java.io.PrintStream;
 
-public class LogPrinter {
+public class ApiLogPrinter {
 
     private static final Logger log = LogManager.getRootLogger();
 

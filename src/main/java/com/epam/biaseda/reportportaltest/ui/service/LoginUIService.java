@@ -1,23 +1,23 @@
 package com.epam.biaseda.reportportaltest.ui.service;
 
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.ui.page.LoginPage;
 import com.epam.biaseda.reportportaltest.ui.page.NavigationSidebarPanel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class LoginUIService {
 
-    private static final Logger log = LogManager.getRootLogger();
+    private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     public static void enterLogin(String login) {
         new LoginPage().waitForPageLoaded();
 
-        log.info("Entering username '{}'", login);
+        log.info(String.format("Entering username '%s'", login));
         new LoginPage().getLogin().sendKeys(login);
     }
 
     public static void enterPassword(String password) {
-        log.info("Entering password '{}'", password);
+        log.info(String.format("Entering password '%s'", password));
         new LoginPage().getPassword().sendKeys(password);
     }
 

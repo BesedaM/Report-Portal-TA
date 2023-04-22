@@ -1,13 +1,13 @@
 package com.epam.biaseda.reportportaltest.ui.page;
 
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.ui.driver.WebDriverHolder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import ru.yandex.qatools.htmlelements.loader.HtmlElementLoader;
 
 public class BasePage {
 
-    private static Logger log = LogManager.getRootLogger();
+    private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     public BasePage() {
         HtmlElementLoader.populatePageObject(this, WebDriverHolder.getWebDriver());
