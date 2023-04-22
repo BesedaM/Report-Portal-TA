@@ -1,6 +1,5 @@
 package com.epam.biaseda.reportportaltest.api;
 
-import com.epam.biaseda.reportportaltest.BaseTest;
 import com.epam.biaseda.reportportaltest.api.model.WidgetGetObject;
 import com.epam.biaseda.reportportaltest.api.service.WidgetsService;
 import com.epam.biaseda.reportportaltest.api.service.WidgetsServiceImpl;
@@ -9,7 +8,7 @@ import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class PositiveGetWidgetTest extends BaseTest {
+public class PositiveGetWidgetTest extends BaseAPITest {
 
     private WidgetsService widgetsService = new WidgetsServiceImpl();
 

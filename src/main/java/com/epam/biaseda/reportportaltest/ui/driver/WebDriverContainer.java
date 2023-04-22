@@ -16,7 +16,7 @@ public class WebDriverContainer {
     public WebDriverContainer() {
     }
 
-    public void launchDriver() {
+    public static void launchDriver() {
         WebDriver driver = new WebDriverFactory().getDriver();
 
         WebDriverHolder.setWebDriver(driver);
@@ -24,11 +24,11 @@ public class WebDriverContainer {
         log.info(WebDriverHolder.getWebDriver().toString());
     }
 
-    public void quitDriver() {
+    public static void quitDriver() {
         WebDriverHolder.removeDriver();
     }
 
-    public WebDriverWait getWaitDriver() {
+    public static WebDriverWait getWaitDriver() {
         return new WebDriverWait(WebDriverHolder.getWebDriver(), Duration.ofSeconds(TIMEOUT));
     }
 }

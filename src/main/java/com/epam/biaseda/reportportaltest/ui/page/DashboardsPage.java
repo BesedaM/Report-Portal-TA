@@ -1,37 +1,43 @@
 package com.epam.biaseda.reportportaltest.ui.page;
 
 import com.epam.biaseda.reportportaltest.ui.driver.action.WaitAction;
-import com.epam.biaseda.reportportaltest.ui.page.block.DashboardPreview;
+import com.epam.biaseda.reportportaltest.ui.page.block.DashboardsGridView;
+import com.epam.biaseda.reportportaltest.ui.page.block.DashboardsTableView;
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
+import ru.yandex.qatools.htmlelements.annotations.Name;
 
 @Getter
 public class DashboardsPage extends BasePage {
 
+    @Name("Dashboards page header")
     @FindBy(xpath = "//div[contains(@class, 'page-header')]/ul")
     private CustomElement header;
 
-    @FindBy(xpath="//div[contains(@class, 'page-content')]/h3[1]")
-    private CustomElement myDashboardsHeader;
+    @Name("'Add dashboard' button")
+    @FindBy(xpath = "//div[contains(@class, 'add-dashboard')]")
+    private CustomElement addNewDashboardButton;
 
-    @FindBy(xpath = "//div[contains(@class, 'dashboardGridItem')]/a")
-    private List<DashboardPreview> dashboardList;
+    @Name("'Grid view' button")
+    @FindBy(xpath = "//div[contains(@class, 'active')]/button[1]")
+    private CustomElement gridViewButton;
 
-    @FindBy(xpath="//div[contains(@class, 'page-content')]/h3[1]")
-    private CustomElement sharedDashboardsHeader;
+    @Name("'Table view' button")
+    @FindBy(xpath = "//div[contains(@class, 'active')]/button[2]")
+    private CustomElement tableViewButton;
+
+    @FindBy(xpath = "//div[contains(@class, 'dashboard-table')]")
+    private DashboardsTableView tableView;
+
+    @FindBy(xpath = "//div[contains(@class, 'page-content')]")
+    private DashboardsGridView gridView;
 
     @Override
     public void waitForPageLoaded() {
         WaitAction.getWebDriverWait()
                 .withMessage("Dashboards page was not loaded!")
-                .until(driver -> getDashboardList().size() > 0 && getDashboardList().get(0).getTitle().isDisplayed());
-    }
-
-    public DashboardPreview getDashboardByTitle(String title) {
-        return getDashboardList().stream()
-                .filter(dashboard -> dashboard.getTitle().getText().equals(title)).findFirst().orElse(null);
+                .until(driver -> getGridView().getDashboardList().size() > 0
+                        || getTableView().getDashboardNameHeader().isDisplayed());
     }
 }

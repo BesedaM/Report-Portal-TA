@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest;
+package com.epam.biaseda.reportportaltest.api;
 
 import com.epam.biaseda.reportportaltest.api.util.LogPrinter;
 import com.epam.biaseda.reportportaltest.core.util.ApplicationProperty;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.LoggingException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTest {
+public class BaseAPITest {
 
     private static final Logger log = LogManager.getRootLogger();
 
