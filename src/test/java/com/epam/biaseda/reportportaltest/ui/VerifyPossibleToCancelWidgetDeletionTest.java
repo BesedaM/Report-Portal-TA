@@ -1,6 +1,5 @@
 package com.epam.biaseda.reportportaltest.ui;
 
-import com.epam.biaseda.reportportaltest.ui.listener.TestExecutionListener;
 import com.epam.biaseda.reportportaltest.ui.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardsUIService;
@@ -8,10 +7,8 @@ import com.epam.biaseda.reportportaltest.ui.validation.DashboardUIValidation;
 import com.epam.biaseda.reportportaltest.ui.validation.DashboardsUIValidation;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners({TestExecutionListener.class})
 @Feature("Widgets")
 @Story("[UI] Verify possible to Cancel Widget deletion")
 public class VerifyPossibleToCancelWidgetDeletionTest extends BaseUITest {
