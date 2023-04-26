@@ -6,7 +6,7 @@ public class WebDriverHolder {
 
     private WebDriverHolder() {}
 
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
     public static WebDriver getWebDriver() {
         return webDriver.get();
@@ -21,7 +21,7 @@ public class WebDriverHolder {
     public static void removeDriver() {
         if (null != webDriver.get()) {
             webDriver.get().quit();
-            webDriver.set(null);
+            webDriver.remove();
         }
     }
 }
