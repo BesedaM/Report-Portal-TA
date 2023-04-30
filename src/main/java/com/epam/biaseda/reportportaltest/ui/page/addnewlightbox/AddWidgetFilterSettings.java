@@ -1,6 +1,7 @@
 package com.epam.biaseda.reportportaltest.ui.page.addnewlightbox;
 
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
+import com.epam.biaseda.reportportaltest.ui.page.element.CustomRadioButton;
 import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +19,6 @@ public class AddWidgetFilterSettings extends CustomElement {
     @FindBy(xpath = "//div[contains(@class,'activeFilter')]")
     private CustomElement activeFilter;
 
-    @FindBy(xpath = "//div[contains(@class, 'filter-item')]")
-    private List<CustomElement> filterList;
+    @FindBy(xpath = "//label[contains(@class, 'input-radio')]")
+    private List<CustomRadioButton> filterList;
 }

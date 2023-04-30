@@ -6,9 +6,10 @@ import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Getter
-public class SelectWidgetTypeLightbox extends AddNewWidgetLightbox{
+public class SelectWidgetTypeLightbox extends AddNewWidgetLightbox {
 
     @FindBy(xpath = "//div[contains(@class, 'widget-type-selector-heading')]")
     private CustomElement widgetTypeSelectorHeading;
@@ -18,4 +19,9 @@ public class SelectWidgetTypeLightbox extends AddNewWidgetLightbox{
 
     @FindBy(xpath = "//div[contains(@class,'button')]/button")
     private CustomElement nextStepButton;
+
+    public CustomRadioButton getWidget(String typeName) {
+        return widgetTypeItemList.stream().filter(item -> item.getText().equals(typeName)).findFirst()
+                .orElseThrow(() -> new NoSuchElementException(String.format("No widget type '%s' was found!", typeName)));
+    }
 }
