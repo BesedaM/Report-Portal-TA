@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui.page.lightbox;
+package com.epam.biaseda.reportportaltest.ui.page.addnewlightbox;
 
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 @Getter
-public class AddNewWidgetLightboxStep2 extends AddNewWidgetLightbox {
+public class AddWidgetFilterSettings extends CustomElement {
 
     @FindBy(xpath = "//input[contains(@class,'inputSearch')]")
     private CustomElement search;
@@ -20,12 +20,4 @@ public class AddNewWidgetLightboxStep2 extends AddNewWidgetLightbox {
 
     @FindBy(xpath = "//div[contains(@class, 'filter-item')]")
     private List<CustomElement> filterList;
-
-    //TODO add missing elements
-
-    @FindBy(xpath = "//div[contains(@class, 'wizardControlsSection')]/button[1]")
-    private CustomElement previousStepButton;
-
-    @FindBy(xpath = "//div[contains(@class, 'wizardControlsSection')]/button[2]")
-    private CustomElement nextStepButton;
 }

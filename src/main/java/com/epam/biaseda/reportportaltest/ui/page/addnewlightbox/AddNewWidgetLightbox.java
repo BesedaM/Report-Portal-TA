@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui.page.lightbox;
+package com.epam.biaseda.reportportaltest.ui.page.addnewlightbox;
 
 import com.epam.biaseda.reportportaltest.ui.page.BasePage;
 import com.epam.biaseda.reportportaltest.ui.page.block.WizardInfoSection;

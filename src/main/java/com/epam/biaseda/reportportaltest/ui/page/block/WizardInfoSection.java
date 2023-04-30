@@ -10,7 +10,7 @@ import java.util.List;
 public class WizardInfoSection extends CustomElement {
 
     @FindBy(xpath = ".//div[contains(@class, 'step-label-item')]")
-    private List<CustomElement> wizardStepElement;
+    private List<WizardStep> wizardStepElement;
 
     @FindBy(xpath = ".//div[contains(@class,'widget-title')]")
     private CustomElement previewWidgetTitle;

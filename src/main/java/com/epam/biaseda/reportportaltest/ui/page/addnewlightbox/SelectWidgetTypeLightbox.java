@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui.page.lightbox;
+package com.epam.biaseda.reportportaltest.ui.page.addnewlightbox;
 
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import com.epam.biaseda.reportportaltest.ui.page.element.CustomRadioButton;
@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 @Getter
-public class AddNewWidgetLightboxStep1 extends AddNewWidgetLightbox{
+public class SelectWidgetTypeLightbox extends AddNewWidgetLightbox{
 
     @FindBy(xpath = "//div[contains(@class, 'widget-type-selector-heading')]")
     private CustomElement widgetTypeSelectorHeading;
