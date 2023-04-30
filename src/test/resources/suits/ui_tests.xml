@@ -4,7 +4,7 @@
 
     <test name="[UI] Verify Possible to Cancel Widget Deletion Test">
         <classes>
-            <class name="com.epam.biaseda.reportportaltest.ui.VerifyPossibleToCancelWidgetDeletionTest"/>
+            <class name="com.epam.biaseda.reportportaltest.ui.testng.VerifyPossibleToCancelWidgetDeletionTest"/>
         </classes>
     </test>
 
