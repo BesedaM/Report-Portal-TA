@@ -5,7 +5,7 @@ import lombok.Getter;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-public class ConfigureLaunchStatisticsChartWidgetLightbox extends ConfigureWidgetLightbox {
+public class LaunchStatisticsChartWidgetLightbox extends ConfigureWidgetLightbox {
 
     @FindBy(xpath = "//div[contains(@class,'filters-control')]")
     private AddWidgetFilterSettings addWidgetFilterSettings;

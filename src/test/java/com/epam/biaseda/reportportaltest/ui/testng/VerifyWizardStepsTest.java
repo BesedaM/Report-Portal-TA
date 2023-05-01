@@ -1,7 +1,7 @@
 package com.epam.biaseda.reportportaltest.ui.testng;
 
 import com.epam.biaseda.reportportaltest.ui.logic.LoginServiceUILogic;
-import com.epam.biaseda.reportportaltest.ui.service.ConfigureLaunchStatisticsChartUIService;
+import com.epam.biaseda.reportportaltest.ui.service.LaunchStatisticsChartUIService;
 import com.epam.biaseda.reportportaltest.ui.service.SelectWidgetTypeUIService;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardsUIService;
@@ -66,8 +66,8 @@ public class VerifyWizardStepsTest extends BaseUITest {
     @Test(dependsOnMethods = "verifyWizardStepsOnSecondStep",
             description = "select filter and go to final step")
     public void selectFilter() {
-        ConfigureLaunchStatisticsChartUIService.selectFilter(FILTER_NAME);
-        ConfigureLaunchStatisticsChartUIService.goToNextStep();
+        LaunchStatisticsChartUIService.selectFilter(FILTER_NAME);
+        LaunchStatisticsChartUIService.goToNextStep();
         AddNewWidgetLightboxBaseValidation.validateLightboxHeader();
     }
 

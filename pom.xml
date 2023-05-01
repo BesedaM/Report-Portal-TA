@@ -168,10 +168,26 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.9.3</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-launcher</artifactId>
+      <version>1.9.3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-engine -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite-engine</artifactId>
       <version>1.9.3</version>
       <scope>test</scope>
     </dependency>
@@ -210,6 +226,9 @@
             </execution>
           </executions>
           <configuration>
+              <includes>
+                    <include>**/JUnitTestSuit.java</include>
+              </includes>
             <suiteXmlFiles>
               <suiteXmlFile>${uiSuiteFile}</suiteXmlFile>
               <suiteXmlFile>${apiSuiteFile}</suiteXmlFile>
