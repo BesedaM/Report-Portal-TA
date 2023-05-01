@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 
 public class ConfigureLaunchStatisticsChartUIService {
 
-    private static final String THIRD_WIZARD_STEP = "Save";
+    private static final String THIRD_WIZARD_STEP = "SAVE";
 
     public static void selectFilter(String filterName) {
         List<CustomRadioButton> filterList = new ConfigureLaunchStatisticsChartWidgetLightbox()

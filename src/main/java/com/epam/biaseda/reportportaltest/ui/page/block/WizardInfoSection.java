@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 public class WizardInfoSection extends CustomElement {
 
     @FindBy(xpath = ".//div[contains(@class, 'step-label-item')]")
-    private List<WizardStep> wizardStepElement;
+    private List<WizardStep> wizardStepsElement;
 
     @FindBy(xpath = ".//div[contains(@class,'widget-title')]")
     private CustomElement previewWidgetTitle;
@@ -23,11 +23,11 @@ public class WizardInfoSection extends CustomElement {
     private CustomElement previewWidgetImage;
 
     public WizardStep getWizardStep(int number) {
-        return wizardStepElement.get(number - 1);
+        return wizardStepsElement.get(number - 1);
     }
 
     public WizardStep getWizardStep(String name) {
-        return wizardStepElement.stream().filter(wizardStep-> wizardStep.getStepName().getText().equals(name)).findFirst()
+        return wizardStepsElement.stream().filter(wizardStep-> wizardStep.getStepName().getText().equals(name)).findFirst()
                 .orElseThrow(()-> new NoSuchElementException(String.format("Unknown wizard step '%s' name!", name)));
     }
 }

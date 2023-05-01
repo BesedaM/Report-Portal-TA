@@ -7,7 +7,7 @@ import com.epam.biaseda.reportportaltest.ui.page.element.CustomRadioButton;
 
 public class SelectWidgetTypeUIService {
 
-    private static final String SECOND_WIZARD_STEP = "Configure widget";
+    private static final String SECOND_WIZARD_STEP = "CONFIGURE WIDGET";
 
     public static void selectWidgetType(String widgetType) {
         CustomRadioButton widgetButton = new SelectWidgetTypeLightbox().getWidget(widgetType);
@@ -17,10 +17,10 @@ public class SelectWidgetTypeUIService {
                 .until(driver -> widgetButton.isChecked());
     }
 
-    public static void goToNextStep(){
+    public static void goToNextStep() {
         new SelectWidgetTypeLightbox().getNextStepButton().click();
         WaitAction.getWebDriverWait()
                 .withMessage("Unable to get to next step with wizard!")
-                .until(driver-> new ConfigureWidgetLightbox().getWizardInfoSection().getWizardStep(SECOND_WIZARD_STEP).isActive());
+                .until(driver -> new ConfigureWidgetLightbox().getWizardInfoSection().getWizardStep(SECOND_WIZARD_STEP).isActive());
     }
 }

@@ -57,9 +57,9 @@ public class ExcelDataReader {
         int columnNumber = worksheet.getRow(0).getPhysicalNumberOfCells();
         int rowNumber = worksheet.getLastRowNum();
 
-        Object[][] data = new Object[rowNumber - 1][columnNumber];
+        Object[][] data = new Object[rowNumber][columnNumber];
 
-        for (int i = 1; i < rowNumber; i++) {
+        for (int i = 1; i < rowNumber + 1; i++) {
             Row row = worksheet.getRow(i);
             for (int j = 0; j < columnNumber; j++) {
                 Cell cell = row.getCell(j);

@@ -17,7 +17,7 @@ public class SelectWidgetTypeLightbox extends AddNewWidgetLightbox {
     @FindBy(xpath = "//div[@class='widget-type-selector']//div[contains(@class, 'widget-type-item')]")
     private List<CustomRadioButton> widgetTypeItemList;
 
-    @FindBy(xpath = "//div[contains(@class,'button')]/button")
+    @FindBy(xpath = "//div[contains(@class,'buttons-block')]/div")
     private CustomElement nextStepButton;
 
     public CustomRadioButton getWidget(String typeName) {

@@ -66,7 +66,6 @@ public class VerifyWizardStepsTest extends BaseUITest {
     @Test(dependsOnMethods = "verifyWizardStepsOnSecondStep",
             description = "select filter and go to final step")
     public void selectFilter() {
-        SelectWidgetTypeUIService.selectWidgetType(WIDGET_TYPE);
         ConfigureLaunchStatisticsChartUIService.selectFilter(FILTER_NAME);
         ConfigureLaunchStatisticsChartUIService.goToNextStep();
         AddNewWidgetLightboxBaseValidation.validateLightboxHeader();
