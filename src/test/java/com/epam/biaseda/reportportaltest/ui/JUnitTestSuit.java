@@ -8,6 +8,7 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 
 @SuiteDisplayName("JUnit 5 Suit")
 @Suite
-@SelectClasses({VerifyLaunchStatisticsChartCriteriaTest.class, VerifyProjectActivityPanelCriteriaTest.class})
+@SelectClasses({VerifyLaunchStatisticsChartCriteriaTest.class,
+        VerifyProjectActivityPanelCriteriaTest.class})
 public class JUnitTestSuit {
 }
