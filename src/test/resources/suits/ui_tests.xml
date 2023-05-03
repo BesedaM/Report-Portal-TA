@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Tests Suite" parallel="false">
+
+    <test name="[UI] Verify Possible to Cancel Widget Deletion Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.VerifyPossibleToCancelWidgetDeletionTest"/>
+        </classes>
+    </test>
+
+</suite>
