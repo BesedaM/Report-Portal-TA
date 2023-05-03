@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui.testng.dataprovide;
+package com.epam.biaseda.reportportaltest.ui.testng.dataprovider;
 
 import com.epam.biaseda.reportportaltest.core.datareader.ExcelDataReader;
 import org.testng.annotations.DataProvider;

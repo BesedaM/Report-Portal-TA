@@ -5,7 +5,7 @@ import com.epam.biaseda.reportportaltest.ui.service.LaunchStatisticsChartUIServi
 import com.epam.biaseda.reportportaltest.ui.service.SelectWidgetTypeUIService;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardsUIService;
-import com.epam.biaseda.reportportaltest.ui.testng.dataprovide.CustomDataProvider;
+import com.epam.biaseda.reportportaltest.ui.testng.dataprovider.CustomDataProvider;
 import com.epam.biaseda.reportportaltest.ui.validation.AddNewWidgetLightboxBaseValidation;
 import com.epam.biaseda.reportportaltest.ui.validation.DashboardUIValidation;
 import com.epam.biaseda.reportportaltest.ui.validation.DashboardsUIValidation;

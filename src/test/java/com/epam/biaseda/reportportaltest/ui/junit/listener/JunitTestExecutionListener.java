@@ -41,7 +41,7 @@ public class JunitTestExecutionListener implements TestExecutionListener {
         File screenshot = ((TakesScreenshot) WebDriverHolder.getWebDriver()).getScreenshotAs(OutputType.FILE);
 
         String timeString = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss").format(LocalDateTime.now());
-        String pathString = Paths.get(".", "/target/screenshot/" + timeString + ".png").toAbsolutePath().toString();
+        String pathString = Paths.get("/target/screenshot/", timeString + ".png").toAbsolutePath().toString();
 
         File newFile = new File(pathString);
         FileUtils.copyFile(screenshot, newFile);

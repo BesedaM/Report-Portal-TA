@@ -13,6 +13,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 

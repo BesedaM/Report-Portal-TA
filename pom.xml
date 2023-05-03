@@ -18,6 +18,7 @@
 
     <apiSuiteFile>src/test/resources/suits/api_tests.xml</apiSuiteFile>
     <uiSuiteFile>src/test/resources/suits/ui_tests.xml</uiSuiteFile>
+    <threadCount>2</threadCount>
 
     <allure.results.directory>allure-results</allure.results.directory>
     <aspectj.version>1.9.19</aspectj.version>
@@ -226,13 +227,10 @@
             </execution>
           </executions>
           <configuration>
-              <includes>
-                    <include>**/JUnitTestSuit.java</include>
-              </includes>
-            <suiteXmlFiles>
-              <suiteXmlFile>${uiSuiteFile}</suiteXmlFile>
-              <suiteXmlFile>${apiSuiteFile}</suiteXmlFile>
-            </suiteXmlFiles>
+
+            <forkCount>${threadCount}</forkCount>
+            <reuseForks>true</reuseForks>
+
             <argLine>
               -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
             </argLine>
