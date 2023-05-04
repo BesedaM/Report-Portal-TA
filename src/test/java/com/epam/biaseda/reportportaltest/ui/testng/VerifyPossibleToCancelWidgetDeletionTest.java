@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui;
+package com.epam.biaseda.reportportaltest.ui.testng;
 
 import com.epam.biaseda.reportportaltest.ui.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.service.DashboardUIService;

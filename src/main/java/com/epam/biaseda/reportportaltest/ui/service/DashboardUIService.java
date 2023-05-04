@@ -2,6 +2,7 @@ package com.epam.biaseda.reportportaltest.ui.service;
 
 import com.epam.biaseda.reportportaltest.ui.driver.action.WaitAction;
 import com.epam.biaseda.reportportaltest.ui.page.DashboardPage;
+import com.epam.biaseda.reportportaltest.ui.page.addnewlightbox.SelectWidgetTypeLightbox;
 import com.epam.biaseda.reportportaltest.ui.page.block.Widget;
 
 public class DashboardUIService {
@@ -22,5 +23,10 @@ public class DashboardUIService {
     public static void confirmWidgetDeletion() {
         new DashboardPage().getDeleteWidgetPopover().getDeleteButton().click();
         WaitAction.waitUntilInvisible(new DashboardPage().getDeleteWidgetPopover());
+    }
+
+    public static void addNewWidget() {
+        new DashboardPage().getAddNewWidgetButton().click();
+        new SelectWidgetTypeLightbox().waitForPageLoaded();
     }
 }

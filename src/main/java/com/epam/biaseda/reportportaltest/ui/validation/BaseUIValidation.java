@@ -10,7 +10,8 @@ import java.util.function.Consumer;
 public class BaseUIValidation {
 
     protected static final String VALIDATE_TEXT_PATTERN = "%s text";
-    protected static final String VALIDATE_PRESENCE_PATTERN = "%s present";
+    protected static final String VALIDATE_PRESENCE_PATTERN = "%s is present";
+    protected static final String VALIDATE_DROPDOWN_TEXT_PATTERN = "'%s' text is present in dropdown";
 
     protected static CustomLogger log = CustomLoggerProvider.getLogger();
 

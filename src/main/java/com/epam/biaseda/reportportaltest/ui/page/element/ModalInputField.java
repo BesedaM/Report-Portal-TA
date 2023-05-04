@@ -6,15 +6,10 @@ import org.openqa.selenium.support.FindBy;
 @Getter
 public class ModalInputField extends CustomElement{
 
-    @FindBy(xpath = ".//div[contains(@class, 'label')]")
+    @FindBy(xpath = ".//span")
     private CustomElement label;
 
-    @FindBy(xpath = ".//*[contains(@class, 'text')]")
+    @FindBy(xpath = ".//input | .//textarea")
     private CustomElement textInput;
 
-    @FindBy(xpath = "//div[contains(@class, 'wizardControlsSection')]/button[1]")
-    private CustomElement previousStepButton;
-
-    @FindBy(xpath = "//div[contains(@class, 'wizardControlsSection')]/button[2]")
-    private CustomElement addButton;
 }
