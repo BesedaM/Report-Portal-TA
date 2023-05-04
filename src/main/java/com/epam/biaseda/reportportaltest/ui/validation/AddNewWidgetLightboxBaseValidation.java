@@ -48,4 +48,19 @@ public class AddNewWidgetLightboxBaseValidation extends BaseUIValidation {
                 .isEqualTo(status);
         log.debug(descriptionReportBuilder.toString());
     }
+
+    public static void validateWizardSteps(WizardStep wizardStep, String stepNumber, String stepName, String status) {
+        log.debug("Validate widget wizard steps...");
+        StringBuilder descriptionReportBuilder = createDescriptionReportBuilder();
+        assertThat(wizardStep.getStepNumber().getText())
+                .as(String.format(VALIDATE_TEXT_PATTERN, wizardStep.getStepNumber().getName()))
+                .isEqualTo(stepNumber);
+        assertThat(wizardStep.getStepName().getText())
+                .as(String.format(VALIDATE_TEXT_PATTERN, wizardStep.getStepName().getName()))
+                .isEqualToIgnoringCase(stepName);
+        assertThat(wizardStep.getStatus())
+                .as(String.format(VALIDATE_TEXT_PATTERN, "Wizard Step Status"))
+                .isEqualTo(status);
+        log.debug(descriptionReportBuilder.toString());
+    }
 }

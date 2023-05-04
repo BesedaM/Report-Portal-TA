@@ -12,12 +12,8 @@ import com.epam.biaseda.reportportaltest.ui.validation.DashboardsUIValidation;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-
-import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
 @Feature("Widgets")
 @Story("[UI] Verify Launch Statistics Chart Criteria Test")

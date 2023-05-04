@@ -18,17 +18,17 @@ public class CustomDataProvider {
         return ExcelDataReader.init(WIDGET_TYPES_WORKSHEET).readTableData();
     }
 
-    @DataProvider(name = "wizardStepsStep01")
+    @DataProvider(name = "wizardStepsStep01", parallel = true)
     public static Object[][] getWizardSteps01() {
         return ExcelDataReader.init(WIZARD_STEPS_01_WORKSHEET).readTableData();
     }
 
-    @DataProvider(name = "wizardStepsStep02")
+    @DataProvider(name = "wizardStepsStep02", parallel = true)
     public static Object[][] getWizardSteps02() {
         return ExcelDataReader.init(WIZARD_STEPS_02_WORKSHEET).readTableData();
     }
 
-    @DataProvider(name = "wizardStepsStep03")
+    @DataProvider(name = "wizardStepsStep03", parallel = true)
     public static Object[][] getWizardSteps03() {
         return ExcelDataReader.init(WIZARD_STEPS_03_WORKSHEET).readTableData();
     }
