@@ -5,11 +5,11 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = {"src/test/java/com/epam/biaseda/reportportaltest/ui/cucumber/feature/WizardSteps.feature"},
+        features = {"src/test/java/com/epam/biaseda/reportportaltest/ui/cucumber/feature/WidgetTypes.feature"},
         glue = {"com.epam.biaseda.reportportaltest.ui.cucumber.hook","com.epam.biaseda.reportportaltest.ui.cucumber.step"},
         plugin = {"pretty"}
 )
-public class BaseCucumberUITest  extends AbstractTestNGCucumberTests {
+public class WidgetTypesUITest extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = false)

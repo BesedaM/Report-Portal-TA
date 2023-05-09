@@ -4,7 +4,13 @@
 
     <test name="[UI] Verify Wizard Steps Test">
         <classes>
-            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.BaseCucumberUITest"/>
+            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.WizardStepsUITest"/>
+        </classes>
+    </test>
+
+    <test name="[UI] Verify Widget Types Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.WidgetTypesUITest"/>
         </classes>
     </test>
 

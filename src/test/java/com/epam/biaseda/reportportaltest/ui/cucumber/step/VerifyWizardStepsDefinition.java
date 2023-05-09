@@ -18,11 +18,6 @@ public class VerifyWizardStepsDefinition {
     private static final String STEP_NAME = "STEP NAME";
     private static final String STEP_STATUS = "STEP STATUS";
 
-    @Given("user clicks on Add widget button")
-    public void user_clicks_on_add_widget_button() {
-        DashboardUIService.addNewWidget();
-    }
-
     @When("Add new widget lightbox opened")
     public void add_new_widget_lightbox_opened() {
         AddNewWidgetLightboxBaseValidation.validateLightboxHeader();
