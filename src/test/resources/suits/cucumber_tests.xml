@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Cucumber Tests Suite" parallel="false">
+
+    <test name="[UI] Verify Wizard Steps Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.BaseCucumberUITest"/>
+        </classes>
+    </test>
+
+</suite>
