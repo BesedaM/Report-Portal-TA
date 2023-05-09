@@ -14,4 +14,10 @@
         </classes>
     </test>
 
+    <test name="[UI] Verify Widgets Criteria Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.WidgetCriteriaUITest"/>
+        </classes>
+    </test>
+
 </suite>

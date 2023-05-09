@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BaseWidgetConfigureValidation extends BaseUIValidation {
 
     protected static void verifyCriteriaForWidgetDropdownMenu(List<CustomElement> dropdownOptions, String dropdownMenu) {
-        log.debug("Verify Criteria for widget dropdown menu...");
+        log.debug(String.format("Verify Criteria %s for widget dropdown menu...", dropdownMenu));
         StringBuilder descriptionReportBuilder = createDescriptionReportBuilder();
 
         List<String> optionNames = dropdownOptions.stream().map(HtmlElement::getText).collect(Collectors.toList());

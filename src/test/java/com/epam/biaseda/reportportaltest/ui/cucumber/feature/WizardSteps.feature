@@ -5,7 +5,9 @@ Feature: Wizard Steps
     When user opens dashboard "DEMO DASHBOARD"
     Then user sees dashboard is not empty
 
-  Scenario: Verifying Wizard Steps
+  Rule: Status of Wizard Step must be changed when navigating from one step to another
+
+  Example: Verifying Wizard Steps
     Given user clicks on Add widget button
     When Add new widget lightbox opened
     Then Verify Wizard Steps
