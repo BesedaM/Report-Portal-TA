@@ -5,7 +5,12 @@ import com.epam.biaseda.reportportaltest.ui.validation.AddNewWidgetLightboxBaseV
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class VerifyWidgetTypesDefinition {
+public class WidgetTypesDefinition {
+
+    @When("Add new widget lightbox opened")
+    public void add_new_widget_lightbox_opened() {
+        AddNewWidgetLightboxBaseValidation.validateLightboxHeader();
+    }
 
     @When("user selects {string} Widget Type")
     public void user_selects_widget_type(String widgetType) {

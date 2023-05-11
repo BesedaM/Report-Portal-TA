@@ -14,6 +14,11 @@ public class LaunchStatisticsChartDefinitions {
         LaunchStatisticsChartUIService.openCriteriaForWidgetDropdown();
     }
 
+    @Then("user selects {string} filter")
+    public void user_selects_filter(String filterName) {
+        LaunchStatisticsChartUIService.selectFilter(filterName);
+    }
+
     @Then("user verifies \"Launch statistics chart\" criteria dropdown")
     public void user_verifies_criteria_dropdown_list(DataTable dataTable) {
         List<String> criterialist = dataTable.asList();

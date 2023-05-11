@@ -8,7 +8,7 @@ import org.testng.annotations.DataProvider;
         features = {"src/test/java/com/epam/biaseda/reportportaltest/ui/cucumber/feature/WizardSteps.feature"},
         glue = {"com.epam.biaseda.reportportaltest.ui.cucumber.hook",
                 "com.epam.biaseda.reportportaltest.ui.cucumber.step"},
-        plugin = {"pretty"}
+        plugin = {"pretty", "com.epam.biaseda.reportportaltest.ui.cucumber.runner.listener.CucumberTestListener"}
 )
 public class WizardStepsUITest extends AbstractTestNGCucumberTests {
 
