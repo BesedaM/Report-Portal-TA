@@ -241,19 +241,44 @@
           </executions>
           <configuration>
 
-            <forkCount>${threadCount}</forkCount>
-            <reuseForks>true</reuseForks>
+<!--            <forkCount>${threadCount}</forkCount>-->
+<!--            <reuseForks>true</reuseForks>-->
 
-            <argLine>
-              -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-            </argLine>
-            <systemProperties>
+            <suiteXmlFiles>
+              <suiteXmlFile>src/test/resources/suits/cucumber_tests.xml</suiteXmlFile>
+            </suiteXmlFiles>
+
+            <properties>
               <property>
-                <name>allure.results.directory</name>
-                <value>${project.build.directory}/${allure.results.directory}</value>
+                <name>junit</name>
+                <value>false</value>
               </property>
-            </systemProperties>
+              <property>
+                <name>dataproviderthreadcount</name>
+                <value>2</value>
+              </property>
+
+            </properties>
+
+<!--            <argLine>-->
+<!--              -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar-->
+<!--            </argLine>-->
+<!--            <systemProperties>-->
+<!--              <property>-->
+<!--                <name>allure.results.directory</name>-->
+<!--                <value>${project.build.directory}/${allure.results.directory}</value>-->
+<!--              </property>-->
+<!--            </systemProperties>-->
           </configuration>
+
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.maven.surefire</groupId>
+              <artifactId>surefire-testng</artifactId>
+              <version>3.0.0</version>
+            </dependency>
+          </dependencies>
+
         </plugin>
 
         <plugin>
