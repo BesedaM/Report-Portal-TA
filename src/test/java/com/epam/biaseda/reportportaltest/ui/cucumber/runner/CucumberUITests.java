@@ -5,11 +5,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        features = {"src/test/resources/cucumber.feature"},
+        features = {"src/test/resources/feature"},
         glue = {"com.epam.biaseda.reportportaltest.ui.cucumber.hook",
                 "com.epam.biaseda.reportportaltest.ui.cucumber.step"},
         plugin = {"pretty",
-                "com.epam.biaseda.reportportaltest.ui.cucumber.runner.listener.CucumberTestListener",
                 "html:target/report/report.html"}
 )
 public class CucumberUITests extends AbstractTestNGCucumberTests {
