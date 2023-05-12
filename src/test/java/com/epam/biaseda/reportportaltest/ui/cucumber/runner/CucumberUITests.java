@@ -12,7 +12,7 @@ import org.testng.annotations.DataProvider;
                 "com.epam.biaseda.reportportaltest.ui.cucumber.runner.listener.CucumberTestListener",
                 "html:target/report/report.html"}
 )
-public class WidgetCriteriaUITest extends AbstractTestNGCucumberTests {
+public class CucumberUITests extends AbstractTestNGCucumberTests {
 
     @Override
     @DataProvider(parallel = true)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UI Cucumber Tests Suite" data-provider-thread-count="3">
+<suite name="UI Cucumber Tests Suite" data-provider-thread-count="2">
 
-    <test name="[UI] Verify Widgets Criteria Test">
+    <test name="[UI] Cucumber Tests">
         <classes>
-            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.WidgetCriteriaUITest"/>
+            <class name="com.epam.biaseda.reportportaltest.ui.cucumber.runner.CucumberUITests"/>
         </classes>
     </test>
 
