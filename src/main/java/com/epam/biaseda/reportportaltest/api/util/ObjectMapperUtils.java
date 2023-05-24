@@ -1,0 +1,32 @@
+package com.epam.biaseda.reportportaltest.api.util;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class ObjectMapperUtils {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    public static String getEntityAsJson(Object entity) {
+        String stringEntity;
+
+        try {
+            stringEntity = mapper.writeValueAsString(entity);
+        } catch (JsonProcessingException e) {
+            throw new UnsupportedOperationException("Unable to get JSON string from entity!", e);
+        }
+
+        return stringEntity;
+    }
+
+    public static <T> T getEntityFromString(String jsonString, Class<T> expectedClass) {
+        T entity;
+        try {
+            entity = mapper.readValue(jsonString, expectedClass);
+        } catch (JsonProcessingException e) {
+            throw new UnsupportedOperationException("Unable to get entity from JSON string!", e);
+        }
+
+        return entity;
+    }
+}
