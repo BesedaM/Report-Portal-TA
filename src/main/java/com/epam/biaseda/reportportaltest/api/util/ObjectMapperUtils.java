@@ -1,6 +1,7 @@
 package com.epam.biaseda.reportportaltest.api.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ObjectMapperUtils {
@@ -28,5 +29,20 @@ public class ObjectMapperUtils {
         }
 
         return entity;
+    }
+
+    public static Object getEntityFromString(String jsonString, JavaType javaType) {
+        Object entity;
+        try {
+            entity = mapper.readValue(jsonString, javaType);
+        } catch (JsonProcessingException e) {
+            throw new UnsupportedOperationException("Unable to get entity from JSON string!", e);
+        }
+
+        return entity;
+    }
+
+    public static <T, E> JavaType constructType(Class<T> outerClass, Class<E> innerClass){
+        return mapper.getTypeFactory().constructParametricType(outerClass, innerClass);
     }
 }

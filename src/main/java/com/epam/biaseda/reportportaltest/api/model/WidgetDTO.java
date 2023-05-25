@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
-public class WidgetEntity implements Serializable {
+public class WidgetDTO implements Serializable {
 
     private int id;
 

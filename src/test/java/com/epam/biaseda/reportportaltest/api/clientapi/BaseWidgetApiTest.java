@@ -16,7 +16,7 @@ public class BaseWidgetApiTest {
 
     protected WidgetsService widgetsService = new WidgetsServiceImpl();
 
-    protected String PROJECT_NAME;
+    protected String projectName;
     protected String username;
     protected String password;
 
@@ -27,7 +27,7 @@ public class BaseWidgetApiTest {
 
     @BeforeClass
     public void defineTestData() {
-        PROJECT_NAME = ApplicationPropertyService.getProperty(ApplicationProperty.PROJECT_NAME);
+        projectName = ApplicationPropertyService.getProperty(ApplicationProperty.PROJECT_NAME);
         username = SecurityPropertyService.LOGIN;
         password = SecurityPropertyService.PASSWORD;
     }

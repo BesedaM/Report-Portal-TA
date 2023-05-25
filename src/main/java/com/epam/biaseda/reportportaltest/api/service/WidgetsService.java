@@ -1,6 +1,6 @@
 package com.epam.biaseda.reportportaltest.api.service;
 
-import com.epam.biaseda.reportportaltest.api.model.WidgetEntity;
+import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
 import io.restassured.response.ValidatableResponse;
 
 public interface WidgetsService {
@@ -12,6 +12,6 @@ public interface WidgetsService {
                                   int widgetId);
 
     ValidatableResponse postWidget(String projectName,
-                                   WidgetEntity widget);
+                                   WidgetDTO widget);
 
 }

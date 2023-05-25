@@ -3,7 +3,7 @@ package com.epam.biaseda.reportportaltest.api.model;
 import lombok.Getter;
 
 @Getter
-public class ErrorMessage {
+public class ErrorMessageDTO {
 
     private int errorCode;
 

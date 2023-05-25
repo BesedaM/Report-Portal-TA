@@ -1,6 +1,6 @@
 package com.epam.biaseda.reportportaltest.api;
 
-import com.epam.biaseda.reportportaltest.api.model.WidgetEntity;
+import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
 import com.epam.biaseda.reportportaltest.api.service.WidgetsService;
 import com.epam.biaseda.reportportaltest.api.service.WidgetsServiceImpl;
 import io.qameta.allure.Feature;
@@ -23,7 +23,7 @@ public class PositiveGetWidgetTest extends BaseAPITest {
         ValidatableResponse response = widgetsService.getWidget(projectName, widgetId);
         response.statusCode(HttpStatus.SC_OK);
 
-        WidgetEntity widget = response.extract().as(WidgetEntity.class);
+        WidgetDTO widget = response.extract().as(WidgetDTO.class);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(widget.getId(), widgetId);
         softAssert.assertEquals(widget.getWidgetType(), "statisticTrend");

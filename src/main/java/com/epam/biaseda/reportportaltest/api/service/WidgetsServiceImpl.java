@@ -1,6 +1,6 @@
 package com.epam.biaseda.reportportaltest.api.service;
 
-import com.epam.biaseda.reportportaltest.api.model.WidgetEntity;
+import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
 import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.ValidatableResponse;
@@ -33,7 +33,7 @@ public class WidgetsServiceImpl extends BaseService implements WidgetsService {
 
     @Override
     public ValidatableResponse postWidget(String projectName,
-                                          WidgetEntity widget) {
+                                          WidgetDTO widget) {
         RequestSpecBuilder baseRequestSpecBuilder = getBasicRequestSpecBuilder();
         baseRequestSpecBuilder.setBasePath(POST_WIDGET_URI);
         baseRequestSpecBuilder.addPathParam(PROJECT_NAME_PATH_PARAMETER, projectName);
