@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.epam.biaseda.reportportaltest.api.util.LoggingConstants.*;
+
 public class HttpClient implements ApiClient {
 
     private static CustomLogger log = CustomLoggerProvider.getLogger();
@@ -72,17 +74,17 @@ public class HttpClient implements ApiClient {
     private CustomResponse doRequest(HttpUriRequest httpUriRequest) {
         CustomResponse customResponse;
         setDefaultHeaders(httpUriRequest);
-        log.info("===================== REQUEST ======================");
+        log.info(REQUEST_START);
         log.info(httpUriRequest.getProtocolVersion() + " " + httpUriRequest.getMethod() + " " + httpUriRequest.getURI());
         Arrays.stream(httpUriRequest.getAllHeaders()).forEach(header -> log.info(header.toString()));
-        log.info("=================== REQUEST END ====================\n");
+        log.info(REQUEST_END);
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpUriRequest)) {
 
-            log.info("===================== RESPONSE ======================");
+            log.info(RESPONSE_START);
             Arrays.stream(response.getAllHeaders()).forEach(header -> log.info(header.toString()));
-            customResponse = ResponseConverter.convertToCustomResponse(response);
-            log.info("=================== RESPONSE END ====================");
+            customResponse = HttpResponseConverter.convertToCustomResponse(response);
+            log.info(RESPONSE_END);
         } catch (IOException exception) {
             throw new IllegalStateException("Exception was thrown while performing the request!", exception);
         }

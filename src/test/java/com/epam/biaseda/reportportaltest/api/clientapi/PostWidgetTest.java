@@ -21,11 +21,11 @@ import java.util.List;
 @Story("[API] POST Widget Test")
 public class PostWidgetTest extends BaseWidgetApiTest {
 
-    private String widgetType = "statisticTrend";
+    private static final String WIDGET_TYPE = "statisticTrend";
 
-    private String unknownWidgetType = "111";
+    private static final String UNKNOWN_WIDGET_TYPE = "111";
 
-    private List<String> contentFields =
+    private static final List<String> CONTENT_FIELDS =
             Arrays.asList("statistics$executions$passed",
                     "statistics$executions$failed",
                     "statistics$executions$skipped");
@@ -35,19 +35,19 @@ public class PostWidgetTest extends BaseWidgetApiTest {
     @Test(description = "POST widget and verify some of it data")
     public void postWidgetTest() {
         widget = WidgetDTO.builder()
-                .widgetType(widgetType)
+                .widgetType(WIDGET_TYPE)
                 .name(RandomStringUtils.randomAlphanumeric(15))
                 .description(RandomStringUtils.randomAlphanumeric(25))
                 .share(false)
                 .filterIds(Collections.singletonList(1))
                 .contentParameters(ContentParameters.builder()
                         .widgetOptions(new WidgetOptions(true, "string", "string"))
-                        .contentFields(contentFields)
+                        .contentFields(CONTENT_FIELDS)
                         .itemsCount(5)
                         .build())
                 .build();
 
-        CustomResponse response = widgetsService.postWidget(projectName, widget);
+        CustomResponse response = widgetsService.postWidget(PROJECT_NAME, widget);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED, "Unexpected status code!");
 
         WidgetDTO widget = ObjectMapperUtils.getEntityFromString(response.getBody(), WidgetDTO.class);
@@ -57,7 +57,7 @@ public class PostWidgetTest extends BaseWidgetApiTest {
     @Test(description = "POST widget without Content Parameters and verify some of it data")
     public void postWidgetWithoutContentParametersTest() {
         widget = WidgetDTO.builder()
-                .widgetType(widgetType)
+                .widgetType(WIDGET_TYPE)
                 .name(RandomStringUtils.randomAlphanumeric(15))
                 .description(RandomStringUtils.randomAlphanumeric(25))
                 .share(false)
@@ -65,7 +65,7 @@ public class PostWidgetTest extends BaseWidgetApiTest {
                 .contentParameters(null)
                 .build();
 
-        CustomResponse response = widgetsService.postWidget(projectName, widget);
+        CustomResponse response = widgetsService.postWidget(PROJECT_NAME, widget);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_BAD_REQUEST, "Unexpected status code!");
 
         ErrorMessageDTO errorMessage = ObjectMapperUtils.getEntityFromString(response.getBody(), ErrorMessageDTO.class);
@@ -75,19 +75,19 @@ public class PostWidgetTest extends BaseWidgetApiTest {
     @Test(description = "POST widget with unknown type and verify some of it data")
     public void postWidgetWithUnknownTypeTest() {
         widget = WidgetDTO.builder()
-                .widgetType(unknownWidgetType)
+                .widgetType(UNKNOWN_WIDGET_TYPE)
                 .name(RandomStringUtils.randomAlphanumeric(15))
                 .description(RandomStringUtils.randomAlphanumeric(25))
                 .share(false)
                 .filterIds(Collections.singletonList(1))
                 .contentParameters(ContentParameters.builder()
                         .widgetOptions(new WidgetOptions(true, "string", "string"))
-                        .contentFields(contentFields)
+                        .contentFields(CONTENT_FIELDS)
                         .itemsCount(5)
                         .build())
                 .build();
 
-        CustomResponse response = widgetsService.postWidget(projectName, widget);
+        CustomResponse response = widgetsService.postWidget(PROJECT_NAME, widget);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_BAD_REQUEST, "Unexpected status code!");
 
         ErrorMessageDTO errorMessage = ObjectMapperUtils.getEntityFromString(response.getBody(), ErrorMessageDTO.class);

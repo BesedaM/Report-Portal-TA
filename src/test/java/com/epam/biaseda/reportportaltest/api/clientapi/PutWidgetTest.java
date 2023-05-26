@@ -18,17 +18,17 @@ import org.testng.annotations.Test;
 @Story("[API] PUT Widget Test")
 public class PutWidgetTest extends BaseWidgetApiTest {
 
-    private int existingWidgetId = 31;
+    private static final int EXISTING_WIDGET_ID = 31;
 
-    private String unknownWidgetType = "111";
+    private static final String UNKNOWN_WIDGET_TYPE = "111";
 
-    private String unknownProjectName = "111_111";
+    private static final String UNKNOWN_PROJECT_NAME = "111_111";
 
     private WidgetDTO originalEntity;
 
     @BeforeClass
     public void getEntityToUpdate() {
-        CustomResponse response = widgetsService.getWidget(projectName, existingWidgetId);
+        CustomResponse response = widgetsService.getWidget(PROJECT_NAME, EXISTING_WIDGET_ID);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Unexpected status code!");
 
         originalEntity = ObjectMapperUtils.getEntityFromString(response.getBody(), WidgetDTO.class);
@@ -39,19 +39,19 @@ public class PutWidgetTest extends BaseWidgetApiTest {
         WidgetDTO copyEntity = CopyUtils.copy(originalEntity);
         copyEntity.setDescription(RandomStringUtils.randomAlphanumeric(25));
 
-        CustomResponse response = widgetsService.putWidget(projectName, existingWidgetId, copyEntity);
+        CustomResponse response = widgetsService.putWidget(PROJECT_NAME, EXISTING_WIDGET_ID, copyEntity);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Unexpected status code!");
 
         InfoMessageDTO infoMessage = ObjectMapperUtils.getEntityFromString(response.getBody(), InfoMessageDTO.class);
-        Assert.assertTrue(infoMessage.getMessage().contains(String.valueOf(existingWidgetId)));
+        Assert.assertTrue(infoMessage.getMessage().contains(String.valueOf(EXISTING_WIDGET_ID)));
     }
 
     @Test(description = "PUT widget with unknown widget type")
     public void updateWidgetWithUnknownTypeTest() {
         WidgetDTO copyEntity = CopyUtils.copy(originalEntity);
-        copyEntity.setWidgetType(unknownWidgetType);
+        copyEntity.setWidgetType(UNKNOWN_WIDGET_TYPE);
 
-        CustomResponse response = widgetsService.putWidget(projectName, existingWidgetId, copyEntity);
+        CustomResponse response = widgetsService.putWidget(PROJECT_NAME, EXISTING_WIDGET_ID, copyEntity);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_BAD_REQUEST, "Unexpected status code!");
 
         ErrorMessageDTO errorMessage = ObjectMapperUtils.getEntityFromString(response.getBody(), ErrorMessageDTO.class);
@@ -62,7 +62,7 @@ public class PutWidgetTest extends BaseWidgetApiTest {
     public void updateWidgetForWrongProjectTest() {
         WidgetDTO copyEntity = CopyUtils.copy(originalEntity);
 
-        CustomResponse response = widgetsService.putWidget(unknownProjectName, existingWidgetId, copyEntity);
+        CustomResponse response = widgetsService.putWidget(UNKNOWN_PROJECT_NAME, EXISTING_WIDGET_ID, copyEntity);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_BAD_REQUEST, "Unexpected status code!");
 
         ErrorMessageDTO errorMessage = ObjectMapperUtils.getEntityFromString(response.getBody(), ErrorMessageDTO.class);

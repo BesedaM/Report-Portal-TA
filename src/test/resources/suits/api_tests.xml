@@ -2,23 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="API Tests Suite" parallel="false">
 
-<!--    <test name="[WS] Verify It Is Possible to GET Widget Test">-->
-<!--        <classes>-->
-<!--            <class name="com.epam.biaseda.reportportaltest.api.clientapi.GetWidgetTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="[WS] Verify It Is Possible to GET Widget Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.api.clientapi.GetWidgetTest"/>
+        </classes>
+    </test>
 
-<!--    <test name="[WS] Verify It Is Possible to POST Widget Test">-->
-<!--        <classes>-->
-<!--            <class name="com.epam.biaseda.reportportaltest.api.clientapi.PostWidgetTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="[WS] Verify It Is Possible to POST Widget Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.api.clientapi.PostWidgetTest"/>
+        </classes>
+    </test>
 
-<!--    <test name="[WS] Verify It Is Possible to PUT Widget Test">-->
-<!--        <classes>-->
-<!--            <class name="com.epam.biaseda.reportportaltest.api.clientapi.PutWidgetTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="[WS] Verify It Is Possible to PUT Widget Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.api.clientapi.PutWidgetTest"/>
+        </classes>
+    </test>
 
     <test name="[WS] GET Widget Names Test">
         <classes>
