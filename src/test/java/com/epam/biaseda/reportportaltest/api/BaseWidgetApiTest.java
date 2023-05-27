@@ -1,7 +1,7 @@
-package com.epam.biaseda.reportportaltest.api.clientapi;
+package com.epam.biaseda.reportportaltest.api;
 
-import com.epam.biaseda.reportportaltest.api.service.servicewithclient.WidgetsService;
-import com.epam.biaseda.reportportaltest.api.service.servicewithclient.WidgetsServiceImpl;
+import com.epam.biaseda.reportportaltest.api.service.WidgetsService;
+import com.epam.biaseda.reportportaltest.api.service.WidgetsServiceImpl;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;

@@ -1,7 +1,7 @@
-package com.epam.biaseda.reportportaltest.api.service.servicewithclient;
+package com.epam.biaseda.reportportaltest.api.service;
 
-import com.epam.biaseda.reportportaltest.api.client.ApiClientHolder;
-import com.epam.biaseda.reportportaltest.api.client.CustomResponse;
+import com.epam.biaseda.reportportaltest.api.service.client.ApiClientHolder;
+import com.epam.biaseda.reportportaltest.api.service.response.CustomResponse;
 import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
 
 import java.util.HashMap;

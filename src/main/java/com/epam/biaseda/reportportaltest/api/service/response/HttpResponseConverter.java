@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.api.client;
+package com.epam.biaseda.reportportaltest.api.service.response;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;

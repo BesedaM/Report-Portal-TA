@@ -1,4 +1,6 @@
-package com.epam.biaseda.reportportaltest.api.client;
+package com.epam.biaseda.reportportaltest.api.service.client;
+
+import com.epam.biaseda.reportportaltest.api.service.response.CustomResponse;
 
 import java.util.Map;
 

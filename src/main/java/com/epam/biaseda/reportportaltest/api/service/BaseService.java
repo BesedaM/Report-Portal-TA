@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.api.service.servicewithclient;
+package com.epam.biaseda.reportportaltest.api.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

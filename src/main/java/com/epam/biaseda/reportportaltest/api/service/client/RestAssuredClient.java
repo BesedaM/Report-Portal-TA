@@ -1,5 +1,7 @@
-package com.epam.biaseda.reportportaltest.api.client;
+package com.epam.biaseda.reportportaltest.api.service.client;
 
+import com.epam.biaseda.reportportaltest.api.service.response.CustomResponse;
+import com.epam.biaseda.reportportaltest.api.service.response.RestAssuredResponseConverter;
 import com.epam.biaseda.reportportaltest.api.util.ObjectMapperUtils;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;

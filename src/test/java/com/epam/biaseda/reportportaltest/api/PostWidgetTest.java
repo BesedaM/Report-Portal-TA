@@ -1,6 +1,6 @@
-package com.epam.biaseda.reportportaltest.api.clientapi;
+package com.epam.biaseda.reportportaltest.api;
 
-import com.epam.biaseda.reportportaltest.api.client.CustomResponse;
+import com.epam.biaseda.reportportaltest.api.service.response.CustomResponse;
 import com.epam.biaseda.reportportaltest.api.util.ObjectMapperUtils;
 import com.epam.biaseda.reportportaltest.api.model.ErrorMessageDTO;
 import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;

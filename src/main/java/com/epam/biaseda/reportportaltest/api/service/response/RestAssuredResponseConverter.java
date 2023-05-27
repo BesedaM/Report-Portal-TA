@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.api.client;
+package com.epam.biaseda.reportportaltest.api.service.response;
 
 import io.restassured.http.Header;
 import io.restassured.response.Response;

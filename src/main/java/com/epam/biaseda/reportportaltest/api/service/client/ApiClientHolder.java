@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.api.client;
+package com.epam.biaseda.reportportaltest.api.service.client;
 
 public class ApiClientHolder {
 
