@@ -3,6 +3,7 @@ package com.epam.biaseda.reportportaltest.api.client;
 import com.epam.biaseda.reportportaltest.api.util.ObjectMapperUtils;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
+import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
@@ -30,7 +31,8 @@ public class HttpClient implements ApiClient {
     public CustomResponse doGetRequest(String url,
                                        Map<String, String> pathSegments,
                                        Map<String, String> parameters) {
-        HttpGet request = new HttpGet(prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
+        HttpGet request = new HttpGet(ApplicationPropertyService.defineApplicationUrl() +
+                prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
         return doRequest(request);
     }
 
@@ -39,7 +41,8 @@ public class HttpClient implements ApiClient {
                                         Object entity,
                                         Map<String, String> pathSegments,
                                         Map<String, String> parameters) {
-        HttpPost request = new HttpPost(prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
+        HttpPost request = new HttpPost(ApplicationPropertyService.defineApplicationUrl() +
+                prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
 
         try {
             request.setEntity(new StringEntity(ObjectMapperUtils.getEntityAsJson(entity)));
@@ -53,7 +56,8 @@ public class HttpClient implements ApiClient {
     public CustomResponse doDeleteRequest(String url,
                                           Map<String, String> pathSegments,
                                           Map<String, String> parameters) {
-        HttpDelete request = new HttpDelete(prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
+        HttpDelete request = new HttpDelete(ApplicationPropertyService.defineApplicationUrl() +
+                prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
         return doRequest(request);
     }
 
@@ -62,7 +66,8 @@ public class HttpClient implements ApiClient {
                                        Object entity,
                                        Map<String, String> pathSegments,
                                        Map<String, String> parameters) {
-        HttpPut request = new HttpPut(prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
+        HttpPut request = new HttpPut(ApplicationPropertyService.defineApplicationUrl() +
+                prepareUrlWithPathSegments(url, pathSegments) + getParametersString(parameters));
         try {
             request.setEntity(new StringEntity(ObjectMapperUtils.getEntityAsJson(entity)));
         } catch (UnsupportedEncodingException exception) {
@@ -101,7 +106,7 @@ public class HttpClient implements ApiClient {
         String resultUrl = url;
         if (pathSegments != null) {
             for (Map.Entry<String, String> entry : pathSegments.entrySet()) {
-                resultUrl = resultUrl.replace(entry.getKey(), entry.getValue());
+                resultUrl = resultUrl.replace(getHttpClientPathParameter(entry.getKey()), entry.getValue());
             }
         }
         return resultUrl;
@@ -115,6 +120,9 @@ public class HttpClient implements ApiClient {
         } else {
             return "";
         }
+    }
 
+    private String getHttpClientPathParameter(String pathParam) {
+        return '{' + pathParam + '}';
     }
 }

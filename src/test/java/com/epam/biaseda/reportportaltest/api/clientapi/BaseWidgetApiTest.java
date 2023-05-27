@@ -2,6 +2,7 @@ package com.epam.biaseda.reportportaltest.api.clientapi;
 
 import com.epam.biaseda.reportportaltest.api.service.servicewithclient.WidgetsService;
 import com.epam.biaseda.reportportaltest.api.service.servicewithclient.WidgetsServiceImpl;
+import com.epam.biaseda.reportportaltest.api.util.ApiLogPrinter;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;
@@ -17,19 +18,25 @@ public class BaseWidgetApiTest {
     protected WidgetsService widgetsService = new WidgetsServiceImpl();
 
     protected static String PROJECT_NAME = null;
-    protected String username;
-    protected String password;
 
     @BeforeClass
     public void logTestStart() {
         log.debug(String.format("%s Test start", getClass().getCanonicalName()));
     }
 
+    @BeforeClass(dependsOnMethods = "logTestStart")
+    public void initLogPrinter() {
+        ApiLogPrinter.initLogPrinter();
+    }
+
     @BeforeClass
     public void defineTestData() {
         PROJECT_NAME = ApplicationPropertyService.getProperty(ApplicationProperty.PROJECT_NAME);
-        username = SecurityPropertyService.LOGIN;
-        password = SecurityPropertyService.PASSWORD;
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void closeLogPrinter() {
+        ApiLogPrinter.closeLogPrinter();
     }
 
     @AfterClass

@@ -10,9 +10,6 @@ import static io.restassured.RestAssured.given;
 
 public class WidgetsServiceImpl extends BaseService implements WidgetsService {
 
-    private static final String PROJECT_NAME_PATH_PARAMETER = "projectName";
-    private static final String WIDGET_ID_PATH_PARAM = "widgetId";
-
     @Override
     public ValidatableResponse getWidget(String projectName,
                                          int widgetId) {

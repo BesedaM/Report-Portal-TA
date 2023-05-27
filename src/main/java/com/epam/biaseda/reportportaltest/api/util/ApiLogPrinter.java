@@ -1,5 +1,7 @@
 package com.epam.biaseda.reportportaltest.api.util;
 
+import com.epam.biaseda.reportportaltest.api.client.ApiClientHolder;
+import com.epam.biaseda.reportportaltest.api.client.RestAssuredClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.io.IoBuilder;
@@ -13,7 +15,9 @@ public class ApiLogPrinter {
     private static PrintStream logPrinter;
 
     public static PrintStream initLogPrinter() {
-        logPrinter = IoBuilder.forLogger(log).buildPrintStream();
+        if (logPrinter == null && ApiClientHolder.getApiClient() instanceof RestAssuredClient) {
+            logPrinter = IoBuilder.forLogger(log).buildPrintStream();
+        }
         return logPrinter;
     }
 

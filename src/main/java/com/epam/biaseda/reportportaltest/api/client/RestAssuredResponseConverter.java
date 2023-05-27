@@ -19,6 +19,8 @@ public class RestAssuredResponseConverter {
         for (Header header : response.getHeaders()) {
             headersMap.put(header.getName(), header.getValue());
         }
+        log.info(response.getStatusLine());
+        headersMap.entries().forEach(entry -> log.info(entry.getKey() + ": " + entry.getValue()));
 
         String responseEntity = response.getBody().asString();
         try {

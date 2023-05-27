@@ -3,7 +3,6 @@ package com.epam.biaseda.reportportaltest.api.service.servicewithclient;
 import com.epam.biaseda.reportportaltest.api.client.ApiClientHolder;
 import com.epam.biaseda.reportportaltest.api.client.CustomResponse;
 import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
-import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +15,7 @@ public class WidgetsServiceImpl implements WidgetsService {
         pathSegments.put(PROJECT_NAME, projectName);
         pathSegments.put(WIDGET_ID, String.valueOf(widgetId));
 
-        String url = ApplicationPropertyService.defineApplicationUrl() + GET_WIDGETS_URI;
-        return ApiClientHolder.getApiClient().doGetRequest(url, pathSegments, null);
+        return ApiClientHolder.getApiClient().doGetRequest(GET_WIDGETS_URI, pathSegments, null);
     }
 
     @Override
@@ -25,8 +23,7 @@ public class WidgetsServiceImpl implements WidgetsService {
         Map<String, String> pathSegments = new HashMap<>();
         pathSegments.put(PROJECT_NAME, projectName);
 
-        String url = ApplicationPropertyService.defineApplicationUrl() + POST_WIDGET_URI;
-        return ApiClientHolder.getApiClient().doPostRequest(url, widget, pathSegments, null);
+        return ApiClientHolder.getApiClient().doPostRequest(POST_WIDGET_URI, widget, pathSegments, null);
     }
 
     @Override
@@ -35,8 +32,7 @@ public class WidgetsServiceImpl implements WidgetsService {
         pathSegments.put(PROJECT_NAME, projectName);
         pathSegments.put(WIDGET_ID, String.valueOf(widgetId));
 
-        String url = ApplicationPropertyService.defineApplicationUrl() + PUT_WIDGET_URI;
-        return ApiClientHolder.getApiClient().doPutRequest(url, widget, pathSegments, null);
+        return ApiClientHolder.getApiClient().doPutRequest(PUT_WIDGET_URI, widget, pathSegments, null);
     }
 
     @Override
@@ -44,7 +40,6 @@ public class WidgetsServiceImpl implements WidgetsService {
         Map<String, String> pathSegments = new HashMap<>();
         pathSegments.put(PROJECT_NAME, projectName);
 
-        String url = ApplicationPropertyService.defineApplicationUrl() + GET_WIDGET_NAMES_URI;
-        return ApiClientHolder.getApiClient().doGetRequest(url, pathSegments, null);
+        return ApiClientHolder.getApiClient().doGetRequest(GET_WIDGET_NAMES_URI, pathSegments, null);
     }
 }

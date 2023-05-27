@@ -23,11 +23,9 @@ public class RestAssuredClient implements ApiClient {
 
     @Override
     public CustomResponse doGetRequest(String url, Map<String, String> pathSegments, Map<String, String> parameters) {
-        RequestSpecification requestSpec = getRequestSpecification(url, pathSegments, parameters);
-
         log.info(RESPONSE_START);
         Response response =
-                requestSpec
+                getRequestSpecification(url, pathSegments, parameters)
                         .get()
                         .andReturn();
         log.info(RESPONSE_END);
@@ -37,11 +35,9 @@ public class RestAssuredClient implements ApiClient {
 
     @Override
     public CustomResponse doPostRequest(String url, Object entity, Map<String, String> pathSegments, Map<String, String> parameters) {
-        RequestSpecification requestSpec = getRequestSpecification(url, pathSegments, parameters);
-
         log.info(RESPONSE_START);
         Response response =
-                requestSpec
+                getRequestSpecification(url, pathSegments, parameters)
                         .post()
                         .andReturn();
         log.info(RESPONSE_END);
@@ -51,11 +47,9 @@ public class RestAssuredClient implements ApiClient {
 
     @Override
     public CustomResponse doDeleteRequest(String url, Map<String, String> pathSegments, Map<String, String> parameters) {
-        RequestSpecification requestSpec = getRequestSpecification(url, pathSegments, parameters);
-
         log.info(RESPONSE_START);
         Response response =
-                requestSpec
+                getRequestSpecification(url, pathSegments, parameters)
                         .delete()
                         .andReturn();
         log.info(RESPONSE_END);
@@ -65,11 +59,9 @@ public class RestAssuredClient implements ApiClient {
 
     @Override
     public CustomResponse doPutRequest(String url, Object entity, Map<String, String> pathSegments, Map<String, String> parameters) {
-        RequestSpecification requestSpec = getRequestSpecification(url, pathSegments, parameters);
-
         log.info(RESPONSE_START);
         Response response =
-                requestSpec
+                getRequestSpecification(url, pathSegments, parameters)
                         .put()
                         .andReturn();
         log.info(RESPONSE_END);
@@ -82,7 +74,7 @@ public class RestAssuredClient implements ApiClient {
                 .setContentType("application/json; charset=UTF-8")
                 .setBaseUri(ApplicationPropertyService.defineApplicationUrl())
                 .setBasePath(url)
-                .addFilter(ResponseLoggingFilter.logResponseTo(ApiLogPrinter.getPrinter()))
+//                .addFilter(ResponseLoggingFilter.logResponseTo(ApiLogPrinter.getPrinter()))
                 .addFilter(RequestLoggingFilter.logRequestTo(ApiLogPrinter.getPrinter()));
 
         if (Objects.nonNull(pathSegments)) {
@@ -93,14 +85,10 @@ public class RestAssuredClient implements ApiClient {
             parameters.forEach(baseRequestSpecBuilder::addParam);
         }
 
-        log.info(REQUEST_START);
-        RequestSpecification requestSpec = given()
+        return given()
                 .spec(baseRequestSpecBuilder.build())
                 .auth().preemptive()
                 .oauth2(SecurityPropertyService.ACCESS_TOKEN)
                 .when();
-        log.info(REQUEST_END);
-
-        return requestSpec;
     }
 }

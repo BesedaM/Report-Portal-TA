@@ -5,9 +5,9 @@ import com.epam.biaseda.reportportaltest.api.model.WidgetDTO;
 
 public interface WidgetsService {
 
-    String PROJECT_NAME = "{projectName}";
+    String PROJECT_NAME = "projectName";
 
-    String WIDGET_ID = "{widgetId}";
+    String WIDGET_ID = "widgetId";
 
     String POST_WIDGET_URI = "/api/v1/{projectName}/widget";
     String GET_WIDGETS_URI = "/api/v1/{projectName}/widget/{widgetId}";
