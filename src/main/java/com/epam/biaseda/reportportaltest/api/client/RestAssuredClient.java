@@ -1,11 +1,10 @@
 package com.epam.biaseda.reportportaltest.api.client;
 
+import com.epam.biaseda.reportportaltest.api.util.ObjectMapperUtils;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.FilterableRequestSpecification;
@@ -26,8 +25,6 @@ public class RestAssuredClient implements ApiClient {
     private static final String METHOD_DELETE = "DELETE";
 
     private static CustomLogger log = CustomLoggerProvider.getLogger();
-
-    private static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public CustomResponse doGetRequest(String url,
@@ -64,7 +61,7 @@ public class RestAssuredClient implements ApiClient {
                                           Map<String, String> pathSegments,
                                           Map<String, String> parameters) {
         Response response =
-                getRequestSpecification(url, pathSegments, parameters, null, METHOD_POST)
+                getRequestSpecification(url, pathSegments, parameters, null, METHOD_DELETE)
                         .delete()
                         .andReturn();
 
@@ -91,11 +88,7 @@ public class RestAssuredClient implements ApiClient {
     private void logResponse(CustomResponse customResponse) {
         log.info(RESPONSE_START);
         customResponse.getHeaders().entries().forEach(header -> log.info(header.getKey() + ": " + header.getValue()));
-        try {
-            log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(customResponse.getBody(), Object.class)));
-        } catch (JsonProcessingException e) {
-            throw new IllegalStateException("Unable to parse Custom response body to entity!", e);
-        }
+        log.info(ObjectMapperUtils.getPrettyStringFromEntity(customResponse.getBody()));
         log.info(RESPONSE_END);
     }
 
@@ -117,11 +110,7 @@ public class RestAssuredClient implements ApiClient {
             parameters.forEach(baseRequestSpecBuilder::addParam);
         }
 
-        try {
-            baseRequestSpecBuilder.setBody(objectMapper.writeValueAsString(entity));
-        } catch (JsonProcessingException e) {
-            throw new IllegalStateException("Unable to parse entity to String!", e);
-        }
+        baseRequestSpecBuilder.setBody(ObjectMapperUtils.getEntityAsJson(entity));
 
         FilterableRequestSpecification specification = (FilterableRequestSpecification) given()
                 .spec(baseRequestSpecBuilder.build())
@@ -140,11 +129,7 @@ public class RestAssuredClient implements ApiClient {
         specification.getHeaders().forEach(header -> log.info(header.getName() + ": " + header.getValue()));
 
         if (!specification.getBody().equals(EMPTY_REQUEST_SPECIFICATION_BODY)) {
-            try {
-                log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(specification.getBody().toString(), Object.class)));
-            } catch (JsonProcessingException e) {
-                throw new IllegalStateException("Unable to write request body to String!", e);
-            }
+            log.info(ObjectMapperUtils.getPrettyStringFromEntity(specification.getBody().toString()));
         }
         log.info(REQUEST_END);
     }

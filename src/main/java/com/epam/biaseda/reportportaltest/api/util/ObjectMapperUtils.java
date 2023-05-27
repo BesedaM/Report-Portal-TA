@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+
 public class ObjectMapperUtils {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -42,7 +44,17 @@ public class ObjectMapperUtils {
         return entity;
     }
 
-    public static <T, E> JavaType constructType(Class<T> outerClass, Class<E> innerClass){
+    public static String getPrettyStringFromEntity(String stringEntity) {
+        String prettyString;
+        try {
+            prettyString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readValue(stringEntity, Object.class));
+        } catch (IOException e) {
+            throw new IllegalStateException("Unable to parse HttpEntity to String!", e);
+        }
+        return prettyString;
+    }
+
+    public static <T, E> JavaType constructType(Class<T> outerClass, Class<E> innerClass) {
         return mapper.getTypeFactory().constructParametricType(outerClass, innerClass);
     }
 }

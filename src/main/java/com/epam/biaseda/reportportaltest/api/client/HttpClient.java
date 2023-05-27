@@ -5,8 +5,6 @@ import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.*;
@@ -30,8 +28,6 @@ public class HttpClient implements ApiClient {
 
     private static final List<String> METHODS_WITH_BODY = Arrays.asList("POST", "PUT");
     private static CustomLogger log = CustomLoggerProvider.getLogger();
-
-    private static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public CustomResponse doGetRequest(String url,
@@ -109,8 +105,8 @@ public class HttpClient implements ApiClient {
         Arrays.stream(httpUriRequest.getAllHeaders()).forEach(header -> log.info(header.toString()));
         if (METHODS_WITH_BODY.contains(httpUriRequest.getMethod())) {
             try {
-                String entity = EntityUtils.toString(((HttpEntityEnclosingRequestBase) httpUriRequest).getEntity());
-                log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(entity, Object.class)));
+                String stringEntity = EntityUtils.toString(((HttpEntityEnclosingRequestBase) httpUriRequest).getEntity());
+                log.info(ObjectMapperUtils.getPrettyStringFromEntity(stringEntity));
             } catch (IOException e) {
                 throw new IllegalStateException("Unable to parse HttpEntity to String!", e);
             }
@@ -121,11 +117,7 @@ public class HttpClient implements ApiClient {
     private void logResponse(CustomResponse customResponse) {
         log.info(RESPONSE_START);
         customResponse.getHeaders().entries().forEach(header -> log.info(header.getKey() + ": " + header.getValue()));
-        try {
-            log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(customResponse.getBody(), Object.class)));
-        } catch (JsonProcessingException e) {
-            throw new IllegalStateException("Unable to parse Custom response body to entity!", e);
-        }
+        log.info(ObjectMapperUtils.getPrettyStringFromEntity(customResponse.getBody()));
         log.info(RESPONSE_END);
     }
 

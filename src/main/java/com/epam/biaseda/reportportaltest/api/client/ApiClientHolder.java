@@ -9,7 +9,7 @@ public class ApiClientHolder {
 
     public static ApiClient getApiClient() {
         if (API_CLIENT == null) {
-            API_CLIENT = new RestAssuredClient();
+            API_CLIENT = new HttpClient();
         }
         return API_CLIENT;
     }
