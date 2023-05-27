@@ -5,6 +5,8 @@ import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
 import com.epam.biaseda.reportportaltest.core.property.SecurityPropertyService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.*;
@@ -13,6 +15,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -25,7 +28,10 @@ import static com.epam.biaseda.reportportaltest.api.util.LoggingConstants.*;
 
 public class HttpClient implements ApiClient {
 
+    private static final List<String> METHODS_WITH_BODY = Arrays.asList("POST", "PUT");
     private static CustomLogger log = CustomLoggerProvider.getLogger();
+
+    private static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public CustomResponse doGetRequest(String url,
@@ -78,18 +84,14 @@ public class HttpClient implements ApiClient {
 
     private CustomResponse doRequest(HttpUriRequest httpUriRequest) {
         CustomResponse customResponse;
+
         setDefaultHeaders(httpUriRequest);
-        log.info(REQUEST_START);
-        log.info(httpUriRequest.getProtocolVersion() + " " + httpUriRequest.getMethod() + " " + httpUriRequest.getURI());
-        Arrays.stream(httpUriRequest.getAllHeaders()).forEach(header -> log.info(header.toString()));
-        log.info(REQUEST_END);
+        logRequest(httpUriRequest);
+
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(httpUriRequest)) {
-
-            log.info(RESPONSE_START);
-            Arrays.stream(response.getAllHeaders()).forEach(header -> log.info(header.toString()));
             customResponse = HttpResponseConverter.convertToCustomResponse(response);
-            log.info(RESPONSE_END);
+            logResponse(customResponse);
         } catch (IOException exception) {
             throw new IllegalStateException("Exception was thrown while performing the request!", exception);
         }
@@ -99,6 +101,32 @@ public class HttpClient implements ApiClient {
     private void setDefaultHeaders(HttpUriRequest httpUriRequest) {
         httpUriRequest.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + SecurityPropertyService.ACCESS_TOKEN);
         httpUriRequest.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+    }
+
+    private void logRequest(HttpUriRequest httpUriRequest) {
+        log.info(REQUEST_START);
+        log.info(httpUriRequest.getProtocolVersion() + " " + httpUriRequest.getMethod() + " " + httpUriRequest.getURI());
+        Arrays.stream(httpUriRequest.getAllHeaders()).forEach(header -> log.info(header.toString()));
+        if (METHODS_WITH_BODY.contains(httpUriRequest.getMethod())) {
+            try {
+                String entity = EntityUtils.toString(((HttpEntityEnclosingRequestBase) httpUriRequest).getEntity());
+                log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(entity, Object.class)));
+            } catch (IOException e) {
+                throw new IllegalStateException("Unable to parse HttpEntity to String!", e);
+            }
+        }
+        log.info(REQUEST_END);
+    }
+
+    private void logResponse(CustomResponse customResponse) {
+        log.info(RESPONSE_START);
+        customResponse.getHeaders().entries().forEach(header -> log.info(header.getKey() + ": " + header.getValue()));
+        try {
+            log.info(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectMapper.readValue(customResponse.getBody(), Object.class)));
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Unable to parse Custom response body to entity!", e);
+        }
+        log.info(RESPONSE_END);
     }
 
     private String prepareUrlWithPathSegments(String url,
