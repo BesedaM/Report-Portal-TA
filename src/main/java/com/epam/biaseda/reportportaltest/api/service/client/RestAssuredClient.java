@@ -26,6 +26,13 @@ public class RestAssuredClient implements ApiClient {
     private static final String METHOD_PUT = "PUT";
     private static final String METHOD_DELETE = "DELETE";
 
+    private RestAssuredClient() {
+    }
+
+    public static RestAssuredClient createRestAssuredClient() {
+        return new RestAssuredClient();
+    }
+
     private static CustomLogger log = CustomLoggerProvider.getLogger();
 
     @Override

@@ -31,6 +31,12 @@ public class HttpClient implements ApiClient {
     private static final List<String> METHODS_WITH_BODY = Arrays.asList("POST", "PUT");
     private static CustomLogger log = CustomLoggerProvider.getLogger();
 
+    private HttpClient(){}
+
+    public static HttpClient createHttpClient(){
+        return new HttpClient();
+    }
+
     @Override
     public CustomResponse doGetRequest(String url,
                                        Map<String, String> pathSegments,
