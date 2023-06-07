@@ -18,7 +18,7 @@ import java.util.Objects;
 import static com.epam.biaseda.reportportaltest.api.util.LoggingConstants.*;
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredClient implements ApiClient {
+class RestAssuredClient implements ApiClient {
 
     private static final String EMPTY_REQUEST_SPECIFICATION_BODY = "null";
     private static final String METHOD_GET = "GET";
@@ -26,11 +26,16 @@ public class RestAssuredClient implements ApiClient {
     private static final String METHOD_PUT = "PUT";
     private static final String METHOD_DELETE = "DELETE";
 
+    private static RestAssuredClient client = null;
+
     private RestAssuredClient() {
     }
 
     public static RestAssuredClient createRestAssuredClient() {
-        return new RestAssuredClient();
+        if (client == null) {
+            client = new RestAssuredClient();
+        }
+        return client;
     }
 
     private static CustomLogger log = CustomLoggerProvider.getLogger();

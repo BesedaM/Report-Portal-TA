@@ -26,15 +26,21 @@ import java.util.Map;
 
 import static com.epam.biaseda.reportportaltest.api.util.LoggingConstants.*;
 
-public class HttpClient implements ApiClient {
+class HttpClient implements ApiClient {
 
     private static final List<String> METHODS_WITH_BODY = Arrays.asList("POST", "PUT");
     private static CustomLogger log = CustomLoggerProvider.getLogger();
 
-    private HttpClient(){}
+    private static HttpClient client = null;
 
-    public static HttpClient createHttpClient(){
-        return new HttpClient();
+    private HttpClient() {
+    }
+
+    public static HttpClient createHttpClient() {
+        if (client == null) {
+            client = new HttpClient();
+        }
+        return client;
     }
 
     @Override
