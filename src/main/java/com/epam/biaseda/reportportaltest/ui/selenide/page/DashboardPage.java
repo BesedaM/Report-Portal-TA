@@ -1,14 +1,11 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.page;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.epam.biaseda.reportportaltest.ui.page.element.CustomElement;
 import com.epam.biaseda.reportportaltest.ui.selenide.page.block.Widget;
+import com.epam.biaseda.reportportaltest.ui.selenide.service.action.WaitAction;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-import java.time.Duration;
 import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Selenide.$$;
@@ -30,8 +27,8 @@ public class DashboardPage {
     public static final By DELETE_WIDGET_POPOVER = By.xpath("//div[contains(@class, 'modal-window')]");
 
     public static void waitForPageLoaded() {
-        $$(WIDGET_LIST).should(CollectionCondition.sizeGreaterThan(0), Duration.ofSeconds(5));
-        $$(WIDGET_LIST).get(0).$(Widget.WIDGET_TITLE).shouldBe(Condition.visible);
+        WaitAction.waitUntilCollectionNotEmpty($$(WIDGET_LIST));
+        WaitAction.waitUntilVisible($$(WIDGET_LIST).get(0).$(Widget.WIDGET_TITLE));
     }
 
     public static SelenideElement getWidget(String widgetTitle) {
