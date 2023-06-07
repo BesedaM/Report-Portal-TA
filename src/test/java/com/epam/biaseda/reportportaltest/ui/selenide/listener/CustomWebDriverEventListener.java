@@ -1,4 +1,4 @@
-package com.epam.biaseda.reportportaltest.ui.selenide.util;
+package com.epam.biaseda.reportportaltest.ui.selenide.listener;
 
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
@@ -22,12 +22,12 @@ public class CustomWebDriverEventListener implements WebDriverListener {
     }
 
     public void afterFindElement(WebElement element, By locator, WebElement result) {
-        log.debug(String.format("Element by locator '%s' was '%s'", locator.toString(),
-                result.isDisplayed() ? "found" : "not found"));
+//        log.debug(String.format("Element by locator '%s' was '%s'", locator.toString(),
+//                result.isDisplayed() ? "found" : "not found"));
     }
 
     public void afterFindElements(WebElement element, By locator, List<WebElement> result) {
-        log.debug(String.format("Elements by locator '%s' were '%s'", locator.toString(),
-                result.size() > 0 ? "found" : "not found"));
+//        log.debug(String.format("Elements by locator '%s' were '%s'", locator.toString(),
+//                result.size() > 0 ? "found" : "not found"));
     }
 }
