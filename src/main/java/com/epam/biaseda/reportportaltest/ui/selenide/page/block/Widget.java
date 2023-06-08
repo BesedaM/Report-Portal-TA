@@ -11,4 +11,5 @@ public class Widget {
     public static final By RELOAD_BUTTON = By.xpath(".//div[contains(@class, 'common-control')]//div[contains(@class, 'control')][2]");
     public static final By DELETE_BUTTON = By.xpath(".//div[contains(@class, 'common-control')]//div[contains(@class, 'control')][3]");
     public static final By CONTENT = By.xpath(".//div[contains(@class, 'widget')]");
+    public static final By RESIZABLE_HANDLE = By.xpath("./span");
 }

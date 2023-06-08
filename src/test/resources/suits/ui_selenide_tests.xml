@@ -8,4 +8,10 @@
         </classes>
     </test>
 
+    <test name="[UI] Verify Possible to Resize Widget Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToResizeWidgetTest"/>
+        </classes>
+    </test>
+
 </suite>

@@ -1,23 +1,13 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.service.action;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.$$;
-
 public class WaitAction {
-
-//    public static WebDriverWait getWebDriverWait() {
-//        return getWebDriverWait(TIMEOUT);
-//    }
-//
-//    public static WebDriverWait getWebDriverWait(long timeout) {
-//        return new WebDriverWait(WebDriverHolder.getWebDriver(), Duration.ofSeconds(timeout));
-//    }
 
     private static final long TIMEOUT = 5;
 
@@ -37,11 +27,38 @@ public class WaitAction {
         element.shouldBe(Condition.visible);
     }
 
+    public static void waitUntilAnimationComplete(SelenideElement element) {
+        element.shouldBe(animationCompleted());
+    }
+
     public static void waitUntilVisibleWithTimeout(SelenideElement element) {
         element.shouldBe(Condition.visible, Duration.ofSeconds(TIMEOUT));
     }
 
     public static void waitUntilCollectionNotEmpty(ElementsCollection elements) {
         elements.shouldBe(CollectionCondition.sizeGreaterThan(0), Duration.ofSeconds(TIMEOUT));
+    }
+
+    private static Condition animationCompleted() {
+        return new Condition("animationCompleted") {
+            private Point currentLocation = new Point(0, 0);
+            private Dimension currentSize = new Dimension(0, 0);
+
+            @Override
+            public CheckResult check(Driver driver, WebElement element) {
+                Point location = element.getLocation();
+                Dimension size = element.getSize();
+
+                boolean animationCompleted = false;
+                if (location.equals(currentLocation) && size.equals(currentSize)) {
+                    animationCompleted = true;
+                } else {
+                    currentLocation = location;
+                    currentSize = size;
+                }
+
+                return new CheckResult(animationCompleted, "Location:" + currentLocation);
+            }
+        };
     }
 }

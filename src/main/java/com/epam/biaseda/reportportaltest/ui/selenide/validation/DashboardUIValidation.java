@@ -29,6 +29,12 @@ public class DashboardUIValidation extends BaseUIValidation {
         $$(DashboardPage.WIDGET_LIST).shouldBe(CollectionCondition.sizeGreaterThan(0));
     }
 
+    public static void verifyWidgetPresentsOnDashboard(String widgetName) {
+        log.debug(String.format("Verify widget %s present on Dashboard...", widgetName));
+        SelenideElement widget = DashboardPage.getWidget(widgetName);
+        assertThat(widget).isNotNull();
+    }
+
     public static void validateWidget(String widgetName, String widgetType, String widgetViewType) {
         log.debug(String.format("Validate widget %s...", widgetName));
         SelenideElement widget = DashboardPage.getWidget(widgetName);

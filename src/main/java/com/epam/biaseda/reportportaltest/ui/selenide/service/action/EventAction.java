@@ -23,6 +23,7 @@ public class EventAction {
         Action mouseOverAction = actions()
                 .clickAndHold(element)
                 .moveByOffset(xOffset, yOffset)
+                .release()
                 .build();
         mouseOverAction.perform();
     }

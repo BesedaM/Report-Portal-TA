@@ -1,33 +1,22 @@
 package com.epam.biaseda.reportportaltest.ui.selenide;
 
-import com.codeborne.selenide.WebDriverRunner;
 import com.epam.biaseda.reportportaltest.ui.selenide.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardsUIService;
-import com.epam.biaseda.reportportaltest.ui.selenide.listener.CustomWebDriverEventListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardUIValidation;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardsUIValidation;
-import com.epam.biaseda.reportportaltest.ui.selenide.listener.TestExecutionListener;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners({TestExecutionListener.class})
 @Feature("Widgets")
 @Story("[UI] Verify possible to Cancel Widget deletion")
-public class VerifyPossibleToCancelWidgetDeletionTest {
+public class VerifyPossibleToCancelWidgetDeletionTest extends BaseSelenideUITest {
 
     private final String DASHBOARD_TITLE = "DEMO DASHBOARD";
     private final String WIDGET_NAME = "LAUNCH STATISTICS BAR";
     private final String WIDGET_TYPE = "Launch statistics chart";
     private final String WIDGET_VIEW_TYPE = "Bar view";
-
-    @BeforeClass
-    public void setUpListener() {
-        WebDriverRunner.addListener(new CustomWebDriverEventListener());
-    }
 
     @Test(description = "login to Report Portal")
     public void login() {
