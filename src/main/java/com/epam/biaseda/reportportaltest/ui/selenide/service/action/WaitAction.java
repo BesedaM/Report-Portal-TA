@@ -5,7 +5,10 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
+import javax.annotation.Nonnull;
 import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class WaitAction {
 
@@ -31,6 +34,10 @@ public class WaitAction {
         element.shouldBe(animationCompleted());
     }
 
+    public static void waitUntilScrolledIntoView(SelenideElement element) {
+        element.shouldBe(scrolledIntoView());
+    }
+
     public static void waitUntilVisibleWithTimeout(SelenideElement element) {
         element.shouldBe(Condition.visible, Duration.ofSeconds(TIMEOUT));
     }
@@ -44,6 +51,7 @@ public class WaitAction {
             private Point currentLocation = new Point(0, 0);
             private Dimension currentSize = new Dimension(0, 0);
 
+            @Nonnull
             @Override
             public CheckResult check(Driver driver, WebElement element) {
                 Point location = element.getLocation();
@@ -58,6 +66,23 @@ public class WaitAction {
                 }
 
                 return new CheckResult(animationCompleted, "Location:" + currentLocation);
+            }
+        };
+    }
+
+    private static Condition scrolledIntoView() {
+        return new Condition("scrolledIntoView") {
+            @Nonnull
+            @Override
+            public CheckResult check(Driver driver, WebElement element) {
+                String jsCode =
+                        "var position = arguments[0].getBoundingClientRect();" +
+                                "if(position.top >= 0 && position.bottom <= window.innerHeight) {" +
+                                "return true;" +
+                                "} else {" +
+                                "return false; }";
+                String value = executeJavaScript(jsCode, element).toString();
+                return new CheckResult(Boolean.parseBoolean(value), "isScrolledIntoView: " + value);
             }
         };
     }

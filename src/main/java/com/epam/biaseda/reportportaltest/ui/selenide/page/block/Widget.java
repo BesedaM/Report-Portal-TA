@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 public class Widget {
 
+    public static final By WIDGET_HEADER = By.xpath(".//div[contains(@class, 'widget-header')]");
     public static final By WIDGET_TITLE = By.xpath(".//div[contains(@class, 'name-block')]");
     public static final By WIDGET_TYPE = By.xpath(".//div[contains(@class, 'type')]/span");
     public static final By WIDGET_VIEW_TYPE = By.xpath(".//div[contains(@class, 'type')]/div");

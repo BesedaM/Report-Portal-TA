@@ -36,15 +36,4 @@ public class EventAction {
     public static void scrollIntoView(SelenideElement element) {
         executeJavaScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
     }
-
-    public static boolean isScrolledIntoView(SelenideElement element) {
-        String jsCode =
-                "var position = arguments[0].getBoundingClientRect();" +
-                        "if(position.top >= 0 && position.bottom <= window.innerHeight) {" +
-                        "return true;" +
-                        "} else {" +
-                        "return false; }";
-        String value = executeJavaScript(jsCode, element).toString();
-        return Boolean.parseBoolean(value);
-    }
 }

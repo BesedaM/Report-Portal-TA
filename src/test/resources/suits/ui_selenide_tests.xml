@@ -14,4 +14,10 @@
         </classes>
     </test>
 
+    <test name="[UI] Verify Possible to Move Widget Test">
+        <classes>
+            <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToMoveWidgetTest"/>
+        </classes>
+    </test>
+
 </suite>
