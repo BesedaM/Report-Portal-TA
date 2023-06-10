@@ -1,34 +1,36 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.service;
 
-import com.codeborne.selenide.SelenideElement;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.ui.selenide.page.LoginPage;
 import com.epam.biaseda.reportportaltest.ui.selenide.page.NavigationSidebarPanel;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.action.WaitAction;
 
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class LoginUIService {
 
     private static CustomLogger log = CustomLoggerProvider.getLogger();
 
+    private static LoginPage loginPage = page(new LoginPage());
+    private static NavigationSidebarPanel navigationSidebarPanel=page(new NavigationSidebarPanel());
+
     public static void enterLogin(String login) {
-        SelenideElement loginField = $(LoginPage.LOGIN);
-        WaitAction.waitUntilEditable(loginField);
+        WaitAction.waitUntilEditable(loginPage.getLogin());
 
         log.info(String.format("Entering username '%s'", login));
-        loginField.setValue(login);
+        loginPage.getLogin().setValue(login);
     }
 
     public static void enterPassword(String password) {
         log.info(String.format("Entering password '%s'", password));
-        $(LoginPage.PASSWORD).setValue(password);
+        loginPage.getPassword().setValue(password);
     }
 
     public static void clickLoginButton() {
         log.info("Click on Login button");
-        $(LoginPage.SUBMIT_BUTTON).click();
-        WaitAction.waitUntilVisibleWithTimeout($(NavigationSidebarPanel.CURRENT_PROJECT));
+        WaitAction.waitUntilClickable(loginPage.getSubmitButton());
+        loginPage.getSubmitButton().click();
+        WaitAction.waitUntilVisibleWithTimeout(navigationSidebarPanel.getCurrentProject());
     }
 }

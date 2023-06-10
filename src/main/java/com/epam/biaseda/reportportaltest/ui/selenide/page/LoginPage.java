@@ -1,12 +1,20 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.page;
 
-import org.openqa.selenium.By;
+import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
+import org.openqa.selenium.support.FindBy;
 
+@Getter
 public class LoginPage {
 
-    public static final By WELCOME_MESSAGE = By.xpath("//*[contains(@class, 'block-header')]");
-    public static final By EXTERNAL_LOGIN_BUTTON = By.xpath("//*[contains(@class, 'externalLoginBlock')]/button");
-    public static final By LOGIN = By.xpath("//input[@name='login']");
-    public static final By PASSWORD = By.xpath("//input[@name='password']");
-    public static final By SUBMIT_BUTTON = By.xpath("//button[@type='submit']");
+    @FindBy(xpath = "//*[contains(@class, 'block-header')]")
+    private SelenideElement welcomeMessage;
+    @FindBy(xpath = "//*[contains(@class, 'externalLoginBlock')]/button")
+    private SelenideElement externalLoginButton;
+    @FindBy(xpath = "//input[@name='login']")
+    private SelenideElement login;
+    @FindBy(xpath = "//input[@name='password']")
+    private SelenideElement password;
+    @FindBy(xpath = "//button[@type='submit']")
+    private SelenideElement submitButton;
 }

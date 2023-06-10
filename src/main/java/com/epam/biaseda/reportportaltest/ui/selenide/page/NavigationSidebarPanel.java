@@ -1,24 +1,28 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.page;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.NavigationUIService;
-import org.openqa.selenium.By;
+import lombok.Getter;
+import org.openqa.selenium.support.FindBy;
 
 import javax.swing.text.html.HTML;
 import java.util.NoSuchElementException;
 
-import static com.codeborne.selenide.Selenide.$$;
-
+@Getter
 public class NavigationSidebarPanel {
 
-    public static final By CURRENT_PROJECT = By.xpath("//div[contains(@class, 'current-project-block')]");
+    @FindBy(xpath = "//div[contains(@class, 'current-project-block')]")
+    private SelenideElement currentProject;
 
-    public static final By MENU_ITEMS = By.xpath("//a[contains(@href,'#default_personal')]");
+    @FindBy(xpath = "//a[contains(@href,'#default_personal')]")
+    private ElementsCollection menuItems;
 
-    public static final By USER = By.xpath("//div[contains(@class, 'user-block')]");
+    @FindBy(xpath = "//div[contains(@class, 'user-block')]")
+    private SelenideElement user;
 
     public SelenideElement getMenuElement(NavigationUIService.MenuItem menuItem) {
-        return $$(MENU_ITEMS).stream()
+        return menuItems.asFixedIterable().stream()
                 .filter(element -> element.getAttribute(HTML.Attribute.HREF.toString()).contains(menuItem.getSearchElement()))
                 .findAny()
                 .orElseThrow(() -> new NoSuchElementException(String.format("Side Menu '%s' not found!", menuItem)));

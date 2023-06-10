@@ -1,24 +1,19 @@
 package com.epam.biaseda.reportportaltest.ui.selenide.service;
 
-import com.codeborne.selenide.SelenideElement;
 import com.epam.biaseda.reportportaltest.ui.selenide.page.DashboardPage;
-import com.epam.biaseda.reportportaltest.ui.selenide.page.block.TableView;
+import com.epam.biaseda.reportportaltest.ui.selenide.page.block.DashboardTableRow;
+import com.epam.biaseda.reportportaltest.ui.selenide.page.TableView;
 
-import java.util.NoSuchElementException;
-
-import static com.codeborne.selenide.Selenide.$$;
-import static com.epam.biaseda.reportportaltest.ui.selenide.page.block.TableView.DASHBOARD_NAME_ELEMENT;
+import static com.codeborne.selenide.Selenide.page;
 
 public class DashboardsUIService {
 
-    public static void openDashboard(String title) {
-        SelenideElement dashboardName = $$(TableView.TABLE_ROW_LIST)
-                .stream()
-                .filter(tablerow -> tablerow.$(DASHBOARD_NAME_ELEMENT).getText().equals(title))
-                .map(tablerow -> tablerow.$(DASHBOARD_NAME_ELEMENT))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException(String.format("Unable to find Dashboard with name '%s'!", title)));
-        dashboardName.click();
-        DashboardPage.waitForPageLoaded();
+    private static TableView tableView = page(new TableView());
+    private static DashboardPage dashboardPage = page(new DashboardPage());
+
+    public static void openDashboard(String name) {
+        DashboardTableRow dashboardRow = tableView.getTableRow(name);
+        dashboardRow.getName().click();
+        dashboardPage.waitForPageLoaded();
     }
 }
