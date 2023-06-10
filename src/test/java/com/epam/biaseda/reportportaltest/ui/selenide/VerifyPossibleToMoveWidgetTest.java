@@ -1,18 +1,13 @@
 package com.epam.biaseda.reportportaltest.ui.selenide;
 
-import com.codeborne.selenide.WebDriverRunner;
-import com.epam.biaseda.reportportaltest.ui.selenide.listener.CustomWebDriverEventListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.listener.TestExecutionListener;
-import com.epam.biaseda.reportportaltest.ui.selenide.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardsUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardUIValidation;
-import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardsUIValidation;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.Point;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -20,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 @Listeners({TestExecutionListener.class})
 @Feature("Widgets")
 @Story("[UI] Verify possible to Resize Widget")
-public class VerifyPossibleToMoveWidgetTest {
+public class VerifyPossibleToMoveWidgetTest extends BaseSelenideUITest {
 
     private final String DASHBOARD_TITLE = "123";
     private final String WIDGET_NAME = "DEMO_FILTER_426";
@@ -29,20 +24,7 @@ public class VerifyPossibleToMoveWidgetTest {
     private Point widgetLocation;
     private Point otherWidgetLocation;
 
-    @BeforeClass
-    public void setUpListener() {
-        WebDriverRunner.addListener(new CustomWebDriverEventListener());
-    }
-
-    @Test(description = "login to Report Portal")
-    public void login() {
-        LoginServiceUILogic.login();
-        DashboardsUIValidation.validateDashboardsPageHeader();
-        DashboardsUIValidation.checkDashboardsTableNotEmpty();
-    }
-
-    @Test(dependsOnMethods = "login",
-            description = "open Dashboards page and validate it")
+    @Test(description = "open Dashboards page and validate it")
     public void openDashboardsPage() {
         DashboardsUIService.openDashboard(DASHBOARD_TITLE);
         DashboardUIValidation.validateDashboardPageHeader(DASHBOARD_TITLE);
@@ -76,7 +58,7 @@ public class VerifyPossibleToMoveWidgetTest {
     }
 
     @AfterClass(alwaysRun = true)
-    public void moveWidgetBack(){
+    public void moveWidgetBack() {
         DashboardUIService.moveToWidget(OTHER_WIDGET_NAME);
         DashboardUIService.replaceWidgets(OTHER_WIDGET_NAME, WIDGET_NAME);
     }

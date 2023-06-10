@@ -1,10 +1,8 @@
 package com.epam.biaseda.reportportaltest.ui.selenide;
 
-import com.epam.biaseda.reportportaltest.ui.selenide.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardsUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardUIValidation;
-import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardsUIValidation;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.Test;
@@ -18,16 +16,7 @@ public class VerifyPossibleToCancelWidgetDeletionTest extends BaseSelenideUITest
     private final String WIDGET_TYPE = "Launch statistics chart";
     private final String WIDGET_VIEW_TYPE = "Bar view";
 
-    @Test(description = "login to Report Portal")
-    public void login() {
-        LoginServiceUILogic.login();
-        DashboardsUIValidation.validateDashboardsPageHeader();
-        DashboardsUIValidation.validateDashboardsTableViewHeader();
-        DashboardsUIValidation.checkDashboardsTableNotEmpty();
-    }
-
-    @Test(dependsOnMethods = "login",
-            description = "open Dashboards page and validate it")
+    @Test(description = "open Dashboards page and validate it")
     public void openDashboardsPage() {
         DashboardsUIService.openDashboard(DASHBOARD_TITLE);
         DashboardUIValidation.validateDashboardPageHeader(DASHBOARD_TITLE);

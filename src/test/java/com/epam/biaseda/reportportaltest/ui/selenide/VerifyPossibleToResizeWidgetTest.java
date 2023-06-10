@@ -1,19 +1,14 @@
 package com.epam.biaseda.reportportaltest.ui.selenide;
 
-import com.codeborne.selenide.WebDriverRunner;
-import com.epam.biaseda.reportportaltest.ui.selenide.listener.CustomWebDriverEventListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.listener.TestExecutionListener;
-import com.epam.biaseda.reportportaltest.ui.selenide.logic.LoginServiceUILogic;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardsUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardUIValidation;
-import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardsUIValidation;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,7 +16,7 @@ import org.testng.asserts.SoftAssert;
 @Listeners({TestExecutionListener.class})
 @Feature("Widgets")
 @Story("[UI] Verify possible to Resize Widget")
-public class VerifyPossibleToResizeWidgetTest {
+public class VerifyPossibleToResizeWidgetTest extends BaseSelenideUITest {
 
     private final String DASHBOARD_TITLE = "123";
     private final String WIDGET_NAME = "LAUNCH STATISTICS BAR";
@@ -34,20 +29,7 @@ public class VerifyPossibleToResizeWidgetTest {
     private Point otherWidgetLocation;
     private Point deleteButtonLocation;
 
-    @BeforeClass
-    public void setUpListener() {
-        WebDriverRunner.addListener(new CustomWebDriverEventListener());
-    }
-
-    @Test(description = "login to Report Portal")
-    public void login() {
-        LoginServiceUILogic.login();
-        DashboardsUIValidation.validateDashboardsPageHeader();
-        DashboardsUIValidation.checkDashboardsTableNotEmpty();
-    }
-
-    @Test(dependsOnMethods = "login",
-            description = "open Dashboards page and validate it")
+    @Test(description = "open Dashboards page and validate it")
     public void openDashboardsPage() {
         DashboardsUIService.openDashboard(DASHBOARD_TITLE);
         DashboardUIValidation.validateDashboardPageHeader(DASHBOARD_TITLE);
@@ -85,7 +67,7 @@ public class VerifyPossibleToResizeWidgetTest {
     }
 
     @AfterClass(alwaysRun = true)
-    public void resizeWidgetBack(){
+    public void resizeWidgetBack() {
         DashboardUIService.resizeWidget(WIDGET_NAME, -X_OFFSET, -Y_OFFSET);
     }
 }

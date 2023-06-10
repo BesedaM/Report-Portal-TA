@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UI TestNG Tests Suite" parallel="none">
+<suite name="UI TestNG Tests Suite" parallel="tests" thread-count="2">
 
     <test name="[UI] Verify Possible to Cancel Widget Deletion Test">
         <classes>
@@ -8,14 +7,9 @@
         </classes>
     </test>
 
-    <test name="[UI] Verify Possible to Resize Widget Test">
+    <test name="[UI] Verify Possible To Move And Resize Widgets Test">
         <classes>
             <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToResizeWidgetTest"/>
-        </classes>
-    </test>
-
-    <test name="[UI] Verify Possible to Move Widget Test">
-        <classes>
             <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToMoveWidgetTest"/>
         </classes>
     </test>
