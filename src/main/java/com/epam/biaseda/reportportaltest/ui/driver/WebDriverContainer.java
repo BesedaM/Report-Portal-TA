@@ -28,8 +28,5 @@ public class WebDriverContainer {
         WebDriverHolder.removeDriver();
     }
 
-    public static WebDriverWait getWaitDriver() {
-        return new WebDriverWait(WebDriverHolder.getWebDriver(), Duration.ofSeconds(TIMEOUT));
-    }
 }
 

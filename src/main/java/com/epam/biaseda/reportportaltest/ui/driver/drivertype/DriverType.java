@@ -9,7 +9,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.WebDriverManagerException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 
 import static com.epam.biaseda.reportportaltest.core.property.ApplicationProperty.WEBDRIVER_MODE;
@@ -88,7 +93,20 @@ public abstract class DriverType {
     }
 
     private WebDriver getRemoteWebDriver() {
-        throw new UnsupportedOperationException("Remote Webriver is not supported by test framework. Please, introduce required changes");
+        try {
+            // get DesiredCapabilities of specific browser
+            MutableCapabilities capabilities = getCapabilities();
+
+            log.info(String.format("RemoteWebDriver Capabilities: {%s}", capabilities));
+
+            String webDriverHub = ApplicationPropertyService.getProperty(ApplicationProperty.WEBDRIVER_REMOTE_HUB_URL);
+            RemoteWebDriver driver = new RemoteWebDriver(new URL(webDriverHub), capabilities);
+            //enableRemoteFileUpload
+            driver.setFileDetector(new LocalFileDetector());
+            return driver;
+        } catch (MalformedURLException e) {
+            throw new WebDriverException("Unable to access grid by provided URL!", e);
+        }
     }
 }
 

@@ -12,7 +12,8 @@ public enum BrowserType {
 
     FIREFOX(DriverManagerType.FIREFOX),
     CHROME(DriverManagerType.CHROME),
-    CHROME_HEADLESS(DriverManagerType.CHROME);
+    CHROME_HEADLESS(DriverManagerType.CHROME),
+    EDGE(DriverManagerType.EDGE);
 
     private DriverManagerType driverManagerType;
 

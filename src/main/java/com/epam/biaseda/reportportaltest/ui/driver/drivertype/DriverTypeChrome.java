@@ -62,6 +62,9 @@ public class DriverTypeChrome extends DriverType {
             options.addArguments("--headless");
         }
 
+        options.setCapability("browserVersion", "113.0");
+        options.setCapability("enableVNC", true);
+        options.setCapability("enableVideo", true);
         options.setPlatformName(platform);
 
         return options;

@@ -3,10 +3,7 @@ package com.epam.biaseda.reportportaltest.ui.driver;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
-import com.epam.biaseda.reportportaltest.ui.driver.drivertype.BrowserType;
-import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverType;
-import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeChrome;
-import com.epam.biaseda.reportportaltest.ui.driver.drivertype.DriverTypeFirefox;
+import com.epam.biaseda.reportportaltest.ui.driver.drivertype.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
@@ -42,6 +39,9 @@ public class WebDriverFactory {
 
             case CHROME:
                 return new DriverTypeChrome(false);
+
+            case EDGE:
+                return new DriverTypeEdge();
 
             default:
                 throw new IllegalStateException(String.format("Unsupported Browser Type specified at '%s' property: '%s'. Expected values are: '%s'",

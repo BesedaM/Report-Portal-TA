@@ -1,15 +1,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="UI TestNG Tests Suite" parallel="tests" thread-count="2">
+<suite name="UI TestNG Tests Suite" parallel="none">
 
     <test name="[UI] Verify Possible to Cancel Widget Deletion Test">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToCancelWidgetDeletionTest"/>
         </classes>
     </test>
 
-    <test name="[UI] Verify Possible To Move And Resize Widgets Test">
+    <test name="[UI] Verify Possible To Resize Widgets Test">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToResizeWidgetTest"/>
+        </classes>
+    </test>
+
+    <test name="[UI] Verify Possible To Move Widgets Test">
+        <parameter name="browser" value="edge"/>
+        <classes>
             <class name="com.epam.biaseda.reportportaltest.ui.selenide.VerifyPossibleToMoveWidgetTest"/>
         </classes>
     </test>
