@@ -7,6 +7,7 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class DriverTypeEdge extends DriverType {
 
@@ -17,11 +18,10 @@ public class DriverTypeEdge extends DriverType {
     @Override
     protected MutableCapabilities getCapabilities() {
         EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        edgeOptions.setCapability("EnableNativeEvents", false);
-        edgeOptions.setCapability("ignoreZoomSetting", true);
-        edgeOptions.setCapability("ms:edgeChromium", true);
         edgeOptions.setPlatformName(platform);
+        edgeOptions.setBrowserVersion("113.0");
+        edgeOptions.setCapability("enableVNC", true);
+        edgeOptions.setCapability("enableVideo", true);
         return edgeOptions;
     }
 

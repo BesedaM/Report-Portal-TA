@@ -10,8 +10,9 @@ public class LoginServiceUILogic {
     public static void login() {
         String url = ApplicationPropertyService.defineApplicationUrl();
 
-//        NavigationService.navigateToUrl(url);
-        NavigationService.navigateToUrl("https://host.docker.internal:8080");
+        NavigationService.navigateToUrl(url);
+        //TODO delete stuff
+//        NavigationService.navigateToUrl("https://host.docker.internal:8080");
 
         try {
             Thread.sleep(10000);
