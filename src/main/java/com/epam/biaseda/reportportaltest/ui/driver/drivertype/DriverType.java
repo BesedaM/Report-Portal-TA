@@ -25,6 +25,7 @@ public abstract class DriverType {
 
     protected String platform;
     protected String browser;
+    protected String driverVersion;
     protected String browserVersion;
     protected String downloadDir;
     private DriverMode driverMode;
@@ -76,7 +77,8 @@ public abstract class DriverType {
     protected void printDriverInfo() {
         log.info(String.format("WebDriver Mode: %s", driverMode));
         log.info(String.format("Platform: %s", platform));
-        log.info(String.format("Browser: %s", browser));
+        log.info(String.format("Browser: %s %s", browser, browserVersion));
+        log.info(String.format("Webdriver: %s", driverVersion));
     }
 
     protected abstract MutableCapabilities getCapabilities();
@@ -85,7 +87,7 @@ public abstract class DriverType {
 
     protected void setupDriverManager(BrowserType browserType) {
         try {
-            WebDriverManager.getInstance(browserType.getDriverManagerType()).driverVersion(browserVersion).setup();
+            WebDriverManager.getInstance(browserType.getDriverManagerType()).driverVersion(driverVersion).setup();
         } catch (WebDriverManagerException ex) {
             log.warn("There was an error managing wires, chrome... trying again forcing to use cache, or mirror");
             WebDriverManager.getInstance(browserType.getDriverManagerType()).useMirror().setup();

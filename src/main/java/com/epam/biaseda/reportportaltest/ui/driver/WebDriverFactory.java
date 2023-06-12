@@ -40,6 +40,9 @@ public class WebDriverFactory {
             case CHROME:
                 return new DriverTypeChrome(false);
 
+            case CHROME_HEADLESS:
+                return new DriverTypeChrome(true);
+
             case EDGE:
                 return new DriverTypeEdge();
 
@@ -50,7 +53,6 @@ public class WebDriverFactory {
     }
 
     public WebDriver instantiateWebDriver() {
-        log.info(String.format("Current Browser Type Selected: %s", definedDriverType.getClass().getCanonicalName()));
         WebDriver webdriver = definedDriverType.getWebDriverObject();
         webdriver.manage().window().maximize();
         webdriver.manage().window().setSize(BROWSER_WINDOW_DIMENSION);

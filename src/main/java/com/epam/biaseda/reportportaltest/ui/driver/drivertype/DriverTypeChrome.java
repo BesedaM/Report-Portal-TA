@@ -15,7 +15,8 @@ public class DriverTypeChrome extends DriverType {
 
     public DriverTypeChrome(boolean isHeadless) {
         this.isHeadless = isHeadless;
-        browserVersion = ApplicationPropertyService.getProperty(ApplicationProperty.WEBDRIVER_CHROME_VERSION);
+        driverVersion = ApplicationPropertyService.getProperty(ApplicationProperty.WEBDRIVER_CHROME_VERSION);
+        browserVersion = ApplicationPropertyService.getProperty(ApplicationProperty.BROWSER_CHROME_VERSION);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class DriverTypeChrome extends DriverType {
             options.addArguments("--headless");
         }
 
-        options.setCapability("browserVersion", "113.0");
+        options.setBrowserVersion(browserVersion);
         options.setCapability("enableVNC", true);
         options.setCapability("enableVideo", true);
         options.setPlatformName(platform);

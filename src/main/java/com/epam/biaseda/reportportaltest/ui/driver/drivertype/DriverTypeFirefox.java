@@ -11,7 +11,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class DriverTypeFirefox extends DriverType {
 
     public DriverTypeFirefox() {
-        browserVersion = ApplicationPropertyService.getProperty(ApplicationProperty.WEBDRIVER_FIREFOX_VERSION);
+        driverVersion = ApplicationPropertyService.getProperty(ApplicationProperty.WEBDRIVER_FIREFOX_VERSION);
+        browserVersion = ApplicationPropertyService.getProperty(ApplicationProperty.BROWSER_FIREFOX_VERSION);
     }
 
     /**
@@ -36,7 +37,7 @@ public class DriverTypeFirefox extends DriverType {
         FirefoxOptions options = new FirefoxOptions();
         options.setProfile(browserProfile);
         options.setPlatformName(platform);
-        options.setBrowserVersion("113");
+        options.setBrowserVersion(browserVersion);
         options.setCapability("enableVNC", true);
         options.setCapability("enableVideo", true);
         return options;
