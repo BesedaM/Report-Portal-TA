@@ -2,7 +2,6 @@ package com.epam.biaseda.reportportaltest.ui.selenide;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.epam.biaseda.reportportaltest.ui.driver.WebDriverFactory;
-import com.epam.biaseda.reportportaltest.ui.driver.WebDriverHolder;
 import com.epam.biaseda.reportportaltest.ui.selenide.listener.CustomWebDriverEventListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.listener.TestExecutionListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.logic.LoginServiceUILogic;
@@ -36,7 +35,6 @@ public class BaseSelenideUITest {
 
     @AfterClass(alwaysRun = true)
     public void logout() {
-        WebDriverHolder.removeDriver();
         WebDriverRunner.closeWebDriver();
     }
 }

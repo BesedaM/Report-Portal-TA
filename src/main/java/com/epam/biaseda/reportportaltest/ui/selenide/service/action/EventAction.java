@@ -31,9 +31,13 @@ public class EventAction {
     public static void scrollTo(SelenideElement element, int yScroll, int xScroll) {
         executeJavaScript("arguments[0].scrollTo({behavior: 'smooth', top: arguments[1], left: arguments[2]});",
                 element, yScroll, xScroll);
+        //Selenide allows to simplify scrollTo(...) method
+        //        element.scrollTo();
     }
 
     public static void scrollIntoView(SelenideElement element) {
         executeJavaScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+        //Selenide allows to simplify scrollIntoView(...) method
+        //        element.scrollIntoView("{behavior: 'smooth', block: 'center'}");
     }
 }
