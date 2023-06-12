@@ -14,8 +14,6 @@ import static com.epam.biaseda.reportportaltest.core.property.ApplicationPropert
 
 public class WebDriverFactory {
 
-    private static CustomLogger log = CustomLoggerProvider.getLogger();
-
     private static final Dimension BROWSER_WINDOW_DIMENSION;
 
     private static DriverType definedDriverType;
@@ -24,15 +22,16 @@ public class WebDriverFactory {
         BROWSER_WINDOW_DIMENSION = new Dimension(1920, 1080);
     }
 
-    public WebDriver getDriver() {
+    public WebDriver getDriver(String browserName) {
         if (null == WebDriverHolder.getWebDriver()) {
-            definedDriverType = defineDriverType();
+            definedDriverType = defineDriverType(browserName);
             return instantiateWebDriver();
         } else return WebDriverHolder.getWebDriver();
     }
 
-    public DriverType defineDriverType() {
-        String activeProfileBrowserTypeProperty = ApplicationPropertyService.getProperty(BROWSER_TYPE);
+    public DriverType defineDriverType(String browserName) {
+        String activeProfileBrowserTypeProperty = browserName != null ?
+                browserName : ApplicationPropertyService.getProperty(BROWSER_TYPE);
         switch (BrowserType.parse(activeProfileBrowserTypeProperty)) {
             case FIREFOX:
                 return new DriverTypeFirefox();

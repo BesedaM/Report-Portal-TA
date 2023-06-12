@@ -10,13 +10,15 @@ import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardsUIVali
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 
 @Listeners({TestExecutionListener.class})
 public class BaseSelenideUITest {
 
     @BeforeClass
-    public void setUpWebDriver() {
-        WebDriverRunner.setWebDriver(new WebDriverFactory().getDriver());
+    @Parameters({"browser"})
+    public void setUpWebDriver(String browserName) {
+        WebDriverRunner.setWebDriver(new WebDriverFactory().getDriver(browserName));
     }
 
     @BeforeClass(dependsOnMethods = "setUpWebDriver")

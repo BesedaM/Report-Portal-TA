@@ -39,7 +39,6 @@ public class DriverTypeFirefox extends DriverType {
         options.setPlatformName(platform);
         options.setBrowserVersion(browserVersion);
         options.setCapability("enableVNC", true);
-        options.setCapability("enableVideo", true);
         return options;
     }
 

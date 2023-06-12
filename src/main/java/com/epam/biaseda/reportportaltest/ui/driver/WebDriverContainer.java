@@ -17,7 +17,7 @@ public class WebDriverContainer {
     }
 
     public static void launchDriver() {
-        WebDriver driver = new WebDriverFactory().getDriver();
+        WebDriver driver = new WebDriverFactory().getDriver(null);
 
         WebDriverHolder.setWebDriver(driver);
 

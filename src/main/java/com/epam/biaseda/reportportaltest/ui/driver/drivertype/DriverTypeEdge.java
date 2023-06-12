@@ -20,7 +20,6 @@ public class DriverTypeEdge extends DriverType {
         edgeOptions.setPlatformName(platform);
         edgeOptions.setBrowserVersion(browserVersion);
         edgeOptions.setCapability("enableVNC", true);
-        edgeOptions.setCapability("enableVideo", true);
         return edgeOptions;
     }
 

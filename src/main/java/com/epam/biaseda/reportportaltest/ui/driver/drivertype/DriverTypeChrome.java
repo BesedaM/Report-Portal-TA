@@ -65,7 +65,6 @@ public class DriverTypeChrome extends DriverType {
 
         options.setBrowserVersion(browserVersion);
         options.setCapability("enableVNC", true);
-        options.setCapability("enableVideo", true);
         options.setPlatformName(platform);
 
         return options;
