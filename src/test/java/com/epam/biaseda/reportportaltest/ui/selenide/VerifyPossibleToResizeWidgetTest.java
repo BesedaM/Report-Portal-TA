@@ -1,6 +1,5 @@
 package com.epam.biaseda.reportportaltest.ui.selenide;
 
-import com.epam.biaseda.reportportaltest.ui.selenide.listener.TestExecutionListener;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.service.DashboardsUIService;
 import com.epam.biaseda.reportportaltest.ui.selenide.validation.DashboardUIValidation;
@@ -9,11 +8,9 @@ import io.qameta.allure.Story;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-@Listeners({TestExecutionListener.class})
 @Feature("Widgets")
 @Story("[UI] Verify possible to Resize Widget")
 public class VerifyPossibleToResizeWidgetTest extends BaseSelenideUITest {
