@@ -293,7 +293,7 @@
 <!--            <reuseForks>true</reuseForks>-->
 
             <suiteXmlFiles>
-              <suiteXmlFile>src/test/resources/suits/cucumber_tests.xml</suiteXmlFile>
+              <suiteXmlFile>src/test/resources/suits/ui_selenide_tests.xml</suiteXmlFile>
             </suiteXmlFiles>
 
             <properties>

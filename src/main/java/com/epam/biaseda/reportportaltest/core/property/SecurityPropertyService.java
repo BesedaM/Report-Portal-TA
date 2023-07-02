@@ -2,12 +2,15 @@ package com.epam.biaseda.reportportaltest.core.property;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Properties;
 
 public class SecurityPropertyService {
 
     private enum SecurityPropertyType {
-        LOGIN, PASSWORD, TOKEN;
+        LOGIN, PASSWORD, TOKEN
     }
 
     private static final Properties properties = new Properties();
@@ -27,6 +30,8 @@ public class SecurityPropertyService {
 
     static {
         loadSecurityProperties();
+
+
         LOGIN = getProperty(SecurityPropertyType.LOGIN);
         PASSWORD = getProperty(SecurityPropertyType.PASSWORD);
         ACCESS_TOKEN = getProperty(SecurityPropertyType.TOKEN);
@@ -36,7 +41,7 @@ public class SecurityPropertyService {
         try (InputStream resourceStream = ClassLoader.getSystemResourceAsStream(SECURITY_PROPERTIES_FILE)) {
             properties.load(resourceStream);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(String.format("No '%s' file defined", SECURITY_PROPERTIES_FILE));
         }
     }
 
