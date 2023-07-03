@@ -43,7 +43,7 @@ public class SecurityPropertyService {
             LOGIN = getProperty(SecurityPropertyType.LOGIN);
             PASSWORD = getProperty(SecurityPropertyType.PASSWORD);
             ACCESS_TOKEN = getProperty(SecurityPropertyType.TOKEN);
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.warn(String.format("No '%s' file defined, loading values from local system", SECURITY_PROPERTIES_FILE));
 
             LOGIN = System.getProperty(SecurityPropertyType.LOGIN.name());
