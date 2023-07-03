@@ -1,5 +1,8 @@
 package com.epam.biaseda.reportportaltest.core.property;
 
+import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
+import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -13,6 +16,7 @@ public class SecurityPropertyService {
         LOGIN, PASSWORD, TOKEN
     }
 
+    private static final CustomLogger log = CustomLoggerProvider.getLogger();
     private static final Properties properties = new Properties();
     private static final String SECURITY_PROPERTIES_FILE = "security.properties";
 
@@ -24,24 +28,27 @@ public class SecurityPropertyService {
                     "local.reportportal.password",
                     "local.reportportal.accesstoken");
 
-    public static final String LOGIN;
-    public static final String PASSWORD;
-    public static final String ACCESS_TOKEN;
+    public static String LOGIN;
+    public static String PASSWORD;
+    public static String ACCESS_TOKEN;
 
     static {
         loadSecurityProperties();
-
-
-        LOGIN = getProperty(SecurityPropertyType.LOGIN);
-        PASSWORD = getProperty(SecurityPropertyType.PASSWORD);
-        ACCESS_TOKEN = getProperty(SecurityPropertyType.TOKEN);
     }
 
     private static void loadSecurityProperties() {
         try (InputStream resourceStream = ClassLoader.getSystemResourceAsStream(SECURITY_PROPERTIES_FILE)) {
             properties.load(resourceStream);
+
+            LOGIN = getProperty(SecurityPropertyType.LOGIN);
+            PASSWORD = getProperty(SecurityPropertyType.PASSWORD);
+            ACCESS_TOKEN = getProperty(SecurityPropertyType.TOKEN);
         } catch (IOException e) {
-            throw new RuntimeException(String.format("No '%s' file defined", SECURITY_PROPERTIES_FILE));
+            log.warn(String.format("No '%s' file defined, loading values from local system", SECURITY_PROPERTIES_FILE));
+
+            LOGIN = System.getProperty(SecurityPropertyType.LOGIN.name());
+            PASSWORD = System.getProperty(SecurityPropertyType.PASSWORD.name());
+            ACCESS_TOKEN = System.getProperty(SecurityPropertyType.TOKEN.name());
         }
     }
 
