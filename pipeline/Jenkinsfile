@@ -1,0 +1,64 @@
+pipeline {
+
+    agent any
+
+    tools {
+        maven 'Maven 3.8.6'
+    }
+
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'ci_cd', description: 'Branch to run test')
+    }
+
+    triggers {
+        cron('@daily')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Downloading project https://github.com/BesedaM/Report-Portal-TA.git'
+                checkout scmGit(branches: [[name: '${BRANCH}']], extensions: [], userRemoteConfigs: [[credentialsId: '39ce588f-0003-4dc4-83ca-7100ab784c34', url: 'https://github.com/BesedaM/Report-Portal-TA.git']])
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project'
+                bat 'mvn clean install -DskipTests=true'
+            }
+        }
+
+        stage('SonarQube analysis') {
+
+            steps {
+                echo 'Executing SonarQube analisys'
+                withSonarQubeEnv('sonar-scanner-4.8.0.2856') {
+                bat 'sonar-scanner.bat'
+                }
+            }
+        }
+
+        stage('Tests') {
+
+            steps {
+                echo 'Executing tests'
+
+                // use these credential in case running UI tests
+                // withCredentials([
+                //     usernamePassword(credentialsId: 'RP_local',
+                //     usernameVariable: 'LOGIN',
+                //     passwordVariable: 'PASSWORD')]) {
+                //     bat 'mvn test -DLOGIN=%LOGIN% -DPASSWORD=%PASSWORD%'
+                //     }
+
+                withCredentials([string(credentialsId: 'RP_token', variable: 'token')]) {
+                    print 'token token %token%'
+                    bat 'mvn test -DTOKEN=%token%'
+                    }
+
+                    testNG failureOnFailedTestConfig: true, showFailedBuilds: true
+                }
+            }
+        }
+}
