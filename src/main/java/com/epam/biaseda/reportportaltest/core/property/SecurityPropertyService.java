@@ -3,7 +3,6 @@ package com.epam.biaseda.reportportaltest.core.property;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
