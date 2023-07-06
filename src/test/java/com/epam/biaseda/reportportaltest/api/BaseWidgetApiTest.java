@@ -6,6 +6,7 @@ import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationProperty;
 import com.epam.biaseda.reportportaltest.core.property.ApplicationPropertyService;
+import com.epam.biaseda.reportportaltest.integration.TeamsNotificationService;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -19,7 +20,8 @@ public class BaseWidgetApiTest {
 
     @BeforeClass
     public void logTestStart() {
-        log.debug(String.format("%s Test start", getClass().getCanonicalName()));
+        log.debug(String.format("%s Test started", getClass().getCanonicalName()));
+        TeamsNotificationService.sendNotification(String.format("%s started", getClass().getCanonicalName()));
     }
 
     @BeforeClass
@@ -29,6 +31,7 @@ public class BaseWidgetApiTest {
 
     @AfterClass
     public void logTestEnd() {
-        log.debug(String.format("%s Test end", getClass().getCanonicalName()));
+        log.debug(String.format("%s Test finished", getClass().getCanonicalName()));
+        TeamsNotificationService.sendNotification(String.format("%s finished", getClass().getCanonicalName()));
     }
 }
