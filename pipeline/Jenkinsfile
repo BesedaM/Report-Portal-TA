@@ -56,9 +56,13 @@ pipeline {
                     print 'token token %token%'
                     bat 'mvn test -DTOKEN=%token%'
                     }
-
-                    testNG failureOnFailedTestConfig: true, showFailedBuilds: true
                 }
             }
         }
+
+        post {
+             always {
+                 testNG()
+                 }
+             }
 }
