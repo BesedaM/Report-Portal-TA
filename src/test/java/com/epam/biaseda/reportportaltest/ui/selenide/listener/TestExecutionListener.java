@@ -2,7 +2,9 @@ package com.epam.biaseda.reportportaltest.ui.selenide.listener;
 
 import com.epam.biaseda.reportportaltest.core.logger.CustomLogger;
 import com.epam.biaseda.reportportaltest.core.logger.CustomLoggerProvider;
+import com.epam.biaseda.reportportaltest.integration.TeamsNotificationService;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
@@ -24,5 +26,15 @@ public class TestExecutionListener implements ITestListener {
         String screenshotName = screenshot(timeString);
 
         log.debug(String.format("Screenshot file '%s' was created", screenshotName));
+    }
+
+    @Override
+    public void onStart(ITestContext context) {
+        TeamsNotificationService.sendNotification(String.format("'%s' was started", context.getName()));
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        TeamsNotificationService.sendNotification(String.format("'%s' was finished", context.getName()));
     }
 }
